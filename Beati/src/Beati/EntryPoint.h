@@ -6,6 +6,11 @@ extern Beati::Application* Beati::CreateApplication();
 
 int main(int argc, char** argv)
 {
+    // Por ahora...
+	Beati::Log::Init();
+    BE_CORE_WARN("Beati Engine Initialized!");
+    BE_CLIENT_INFO("Hello! {0}");
+
     auto app = Beati::CreateApplication();
     app->Run();
     delete app;
