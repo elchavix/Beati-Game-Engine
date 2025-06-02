@@ -1,12 +1,1 @@
-﻿  SandboxApp.cpp
-C:\Programacion\C++\Game-Engine-Test\Beati\src\Beati\Log.h(20,42): warning C4251: "Beati::Log::s_CoreLogger": "std::shared_ptr<spdlog::logger>" debe tener una interfaz DLL para que la usen los clientes de "Beati::Log"
-  (compilando archivo de origen "src/SandboxApp.cpp")
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(1560,7):
-      vea la declaración de 'std::shared_ptr<spdlog::logger>'
-  
-C:\Programacion\C++\Game-Engine-Test\Beati\src\Beati\Log.h(21,42): warning C4251: "Beati::Log::s_ClientLogger": "std::shared_ptr<spdlog::logger>" debe tener una interfaz DLL para que la usen los clientes de "Beati::Log"
-  (compilando archivo de origen "src/SandboxApp.cpp")
-      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(1560,7):
-      vea la declaración de 'std::shared_ptr<spdlog::logger>'
-  
-  Sandbox.vcxproj -> C:\Programacion\C++\Game-Engine-Test\bin\Debug-x64\Sandbox\Sandbox.exe
+﻿LINK : fatal error LNK1104: no se puede abrir el archivo 'C:\Programacion\C++\Game-Engine-Test\bin\Debug-x64\Beati\Beati.lib'
