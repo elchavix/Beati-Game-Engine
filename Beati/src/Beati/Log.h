@@ -3,8 +3,9 @@
 
 #include <memory>
 
-#include "Core.h"
+#include "Beati/Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h" // for spdlog::operator<< support for std::string
 
 namespace Beati
 {
@@ -32,8 +33,8 @@ namespace Beati
 #define BE_CORE_FATAL(...)   ::Beati::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 // Client log macros
-#define BE_CLIENT_TRACE(...)   ::Beati::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define BE_CLIENT_INFO(...)    ::Beati::Log::GetClientLogger()->info(__VA_ARGS__)
-#define BE_CLIENT_WARN(...)    ::Beati::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define BE_CLIENT_ERROR(...)   ::Beati::Log::GetClientLogger()->error(__VA_ARGS__)
-#define BE_CLIENT_FATAL(...)   ::Beati::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define BE_TRACE(...)   ::Beati::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define BE_INFO(...)    ::Beati::Log::GetClientLogger()->info(__VA_ARGS__)
+#define BE_WARN(...)    ::Beati::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define BE_ERROR(...)   ::Beati::Log::GetClientLogger()->error(__VA_ARGS__)
+#define BE_FATAL(...)   ::Beati::Log::GetClientLogger()->fatal(__VA_ARGS__)

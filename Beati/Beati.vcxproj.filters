@@ -4,6 +4,9 @@
     <Filter Include="Beati">
       <UniqueIdentifier>{AA5FE20C-1674-0ABE-DFF5-AD1D4BC906EF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Beati\Events">
+      <UniqueIdentifier>{4E88CE97-3AEB-5D3C-E370-96F2CFB229BF}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Beati.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Beati\EntryPoint.h">
       <Filter>Beati</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Events\ApplicationEvent.h">
+      <Filter>Beati\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Events\Event.h">
+      <Filter>Beati\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Events\KeyEvent.h">
+      <Filter>Beati\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Events\MouseEvent.h">
+      <Filter>Beati\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Beati\Log.h">
       <Filter>Beati</Filter>

@@ -22,12 +22,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 	files  
 	{  
 		"%{prj.name}/src/**.h",  
-		"%{prj.name}/src/**.cpp",  
+		"%{prj.name}/src/**.cpp"
 	}  
 
 	includedirs  
 	{  
-		"%{prj.name}/vendor/spdlog/include",  
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include"  
 	}  
 
 	buildoptions { "/utf-8" }
@@ -78,8 +79,8 @@ project "Sandbox"
 
 	includedirs  
 	{  
-		"Beati/vendor/spdlog/include",  
-		"Beati/src"  
+		"Beati/src",
+		"Beati/vendor/spdlog/include"  
 	}  
 
 	buildoptions { "/utf-8" }
