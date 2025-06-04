@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include <memory>
-
+#include "bepch.h"
 #include "Beati/Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h" // for spdlog::operator<< support for std::string

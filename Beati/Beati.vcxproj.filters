@@ -34,6 +34,7 @@
     <ClInclude Include="src\Beati\Log.h">
       <Filter>Beati</Filter>
     </ClInclude>
+    <ClInclude Include="src\bepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Beati\Log.cpp">
       <Filter>Beati</Filter>
     </ClCompile>
+    <ClCompile Include="src\bepch.cpp" />
   </ItemGroup>
 </Project>

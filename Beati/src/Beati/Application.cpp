@@ -1,7 +1,8 @@
+#include "bepch.h"
 #include "Application.h"
-
 #include "Beati/Events/ApplicationEvent.h"
 #include "Beati/Log.h"
+
 
 namespace Beati {
 	Application::Application()

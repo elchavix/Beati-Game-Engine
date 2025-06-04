@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Beati/Events/Event.h"
-#include <sstream>
+#include "Event.h"
 
 
 namespace Beati {

@@ -10,7 +10,7 @@ configurations
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"  
 
-	project "Beati"  
+project "Beati"  
 	location "Beati"  
 	kind "SharedLib"  
 	language "C++"  
@@ -18,6 +18,9 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 	targetdir ("bin/".. outputdir .. "/%{prj.name}")  
 	objdir ("bin-int/".. outputdir .. "/%{prj.name}")  
+
+	pchheader "bepch.h"
+	pchsource "Beati/src/bepch.cpp"
 
 	files  
 	{  
