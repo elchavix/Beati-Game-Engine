@@ -10,6 +10,12 @@ configurations
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"  
 
+includeDir = {}
+includeDir["spdlog"] = "Beati/vendor/spdlog/include"
+includeDir["GLFW"] = "Beati/vendor/GLFW/include"
+
+include "Beati/vendor/GLFW/premake5.lua"
+
 project "Beati"  
 	location "Beati"  
 	kind "SharedLib"  
@@ -31,10 +37,18 @@ project "Beati"
 	includedirs  
 	{  
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"  
+		"%{includeDir.spdlog}",
+		"%{includeDir.GLFW}"
 	}  
 
 	buildoptions { "/utf-8" }
+
+	links  
+	{  
+		"GLFW",  
+		"opengl32.lib",
+		"dwmapi.lib"
+	}
 
 	filter "system:windows"  
 		cppdialect "C++17"  

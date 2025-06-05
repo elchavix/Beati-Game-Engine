@@ -3,11 +3,13 @@
 #include "Beati/Events/ApplicationEvent.h"
 #include "Beati/Log.h"
 
+#include "GLFW/glfw3.h"
 
 namespace Beati {
 	Application::Application()
 	{
 		// Constructor implementation
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -17,9 +19,12 @@ namespace Beati {
 
 	void Application::Run()
 	{
-		WindowResizeEvent resizeEvent(1280, 720);	// Pruebo el evento de redimensionamiento de ventana.
-		BE_TRACE("Window resized to: {0}x{1}", resizeEvent.GetWidth(), resizeEvent.GetHeight());
 		// Run the application logic
-		while (true);
+		while (true)
+		{
+			glClearColor(0.1f, 1.0f, 0.1f, 0.7f);
+			glClear(GL_COLOR_BUFFER_BIT);
+			m_Window->OnUpdate();
+		}
 	}
 }

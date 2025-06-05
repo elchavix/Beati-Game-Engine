@@ -2,6 +2,8 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "Window.h"
+
 
 namespace Beati {
 
@@ -12,6 +14,9 @@ namespace Beati {
 		virtual ~Application();
 
 		void Run();
+
+	private:
+		std::unique_ptr<class Window> m_Window;
 	};
 
 	// To be defined in the client
