@@ -2,6 +2,8 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "Beati/Events/ApplicationEvent.h"
+
 #include "Window.h"
 
 
@@ -15,8 +17,13 @@ namespace Beati {
 
 		void Run();
 
+		void OnEvent(Event& e);
+
 	private:
+		bool OnWindowClose(Event& e);
+
 		std::unique_ptr<class Window> m_Window;
+		bool m_Running = true;
 	};
 
 	// To be defined in the client

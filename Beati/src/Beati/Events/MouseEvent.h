@@ -77,6 +77,9 @@ namespace Beati {
 		MouseButtonPressedEvent(int mouseButton, float x, float y)
 			: MouseButtonEvent(mouseButton, x, y) {}
 
+		MouseButtonPressedEvent(int mouseButton)
+			: MouseButtonEvent(mouseButton, 0.f, 0.f) {} // BORRAR: agregar la posicion del mouse en el constructor y elminiar este.
+
 		std::string ToString() const override
 		{
 			std::stringstream ss;
@@ -92,6 +95,8 @@ namespace Beati {
 	public:
 		MouseButtonReleasedEvent(int mouseButton, float x, float y)
 			: MouseButtonEvent(mouseButton, x, y) {}
+		MouseButtonReleasedEvent(int mouseButton)
+			: MouseButtonEvent(mouseButton, 0.f, 0.f) {} // BORRAR: agregar la posicion del mouse en el constructor y elminiar este.
 
 		std::string ToString() const override
 		{
