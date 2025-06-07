@@ -21,6 +21,20 @@ namespace Beati {
 		// Destructor implementation
 	}
 
+	void Application::PushLayer(Layer* layer)
+	{
+		// Push a layer onto the stack
+		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		// Push an overlay onto the stack
+		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
+	}
+
 	void Application::OnEvent(Event& e)
 	{
 		// Handle events
@@ -28,7 +42,12 @@ namespace Beati {
 
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		BE_CORE_TRACE("Event: {0}", e.ToString());
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		{
+			(*--it)->OnEvent(e);
+			if (e.Handled)
+				break;
+		}
 	}
 
 	void Application::Run()
@@ -38,6 +57,12 @@ namespace Beati {
 		{
 			glClearColor(0.1f, 1.0f, 0.1f, 0.7f);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnUpdate();
+			}
+
 			m_Window->OnUpdate();
 		}
 	}

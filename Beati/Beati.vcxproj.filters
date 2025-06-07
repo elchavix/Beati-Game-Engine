@@ -37,6 +37,12 @@
     <ClInclude Include="src\Beati\Events\MouseEvent.h">
       <Filter>Beati\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Beati\Layer.h">
+      <Filter>Beati</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\LayerStack.h">
+      <Filter>Beati</Filter>
+    </ClInclude>
     <ClInclude Include="src\Beati\Log.h">
       <Filter>Beati</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Application.cpp">
+      <Filter>Beati</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Beati\Layer.cpp">
+      <Filter>Beati</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Beati\LayerStack.cpp">
       <Filter>Beati</Filter>
     </ClCompile>
     <ClCompile Include="src\Beati\Log.cpp">

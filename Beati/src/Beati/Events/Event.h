@@ -47,8 +47,7 @@ namespace Beati {
 			return GetCategoryFlags() & static_cast<int>(category);
 		}
 
-	protected:
-		bool Handled = false;
+		bool Handled = false; // TODO: Quizá hacerlo protected.
 	};
 
 	class EventDispatcher
