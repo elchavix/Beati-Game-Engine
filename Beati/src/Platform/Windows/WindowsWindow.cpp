@@ -1,5 +1,7 @@
 #include "bepch.h"
 #include "Beati/Log.h"
+
+#include <glad/glad.h>
 #include "WindowsWindow.h"
 
 #include "Beati/Events/Event.h"
@@ -49,6 +51,8 @@ namespace Beati {
 
 		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		BE_CORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

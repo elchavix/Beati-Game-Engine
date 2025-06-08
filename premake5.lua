@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 includeDir = {}
 includeDir["spdlog"] = "Beati/vendor/spdlog/include"
 includeDir["GLFW"] = "Beati/vendor/GLFW/include"
+includeDir["Glad"] = "Beati/vendor/Glad/include"
 
-include "Beati/vendor/GLFW/premake5.lua"
+include "Beati/vendor/GLFW"
+include "Beati/vendor/Glad"
 
 project "Beati"  
 	location "Beati"  
@@ -38,7 +40,8 @@ project "Beati"
 	{  
 		"%{prj.name}/src",
 		"%{includeDir.spdlog}",
-		"%{includeDir.GLFW}"
+		"%{includeDir.GLFW}",
+		"%{includeDir.Glad}"
 	}  
 
 	buildoptions { "/utf-8" }
@@ -46,6 +49,7 @@ project "Beati"
 	links  
 	{  
 		"GLFW",  
+		"Glad",  
 		"opengl32.lib",
 		"dwmapi.lib"
 	}
@@ -58,7 +62,8 @@ project "Beati"
 		defines  
 		{  
 			"BE_PLATFORM_WINDOWS",  
-			"BE_BUILD_DLL"  
+			"BE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}  
 
 		postbuildcommands  
