@@ -14,9 +14,11 @@ includeDir = {}
 includeDir["spdlog"] = "Beati/vendor/spdlog/include"
 includeDir["GLFW"] = "Beati/vendor/GLFW/include"
 includeDir["Glad"] = "Beati/vendor/Glad/include"
+includeDir["ImGui"] = "Beati/vendor/imgui"
 
 include "Beati/vendor/GLFW"
 include "Beati/vendor/Glad"
+include "Beati/vendor/imgui"
 
 project "Beati"  
 	location "Beati"  
@@ -41,7 +43,8 @@ project "Beati"
 		"%{prj.name}/src",
 		"%{includeDir.spdlog}",
 		"%{includeDir.GLFW}",
-		"%{includeDir.Glad}"
+		"%{includeDir.Glad}",
+		"%{includeDir.ImGui}"
 	}  
 
 	buildoptions { "/utf-8" }
@@ -50,6 +53,7 @@ project "Beati"
 	{  
 		"GLFW",  
 		"Glad",  
+		"ImGui",
 		"opengl32.lib",
 		"dwmapi.lib"
 	}

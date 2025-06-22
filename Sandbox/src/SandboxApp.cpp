@@ -32,7 +32,9 @@ class Sandbox : public Beati::Application
 public:
 	Sandbox()
 	{
+		
 		PushLayer(new EjemploCapa());
+		PushOverlay(new Beati::ImGuiLayer());
 	}
 
     ~Sandbox() {}
@@ -42,3 +44,4 @@ Beati::Application* Beati::CreateApplication()
 {
     return new Sandbox();
 }
+
