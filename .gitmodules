@@ -1,7 +1,3 @@
 [submodule "Beati/vendor/spdlog"]
 	path = Beati/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "Beati/vendor/GLFW"]
-	path = Beati/vendor/GLFW
-	url = https://github.com/TheCherno/GLFW
-
