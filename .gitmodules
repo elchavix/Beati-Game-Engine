@@ -4,3 +4,6 @@
 [submodule "Beati/vendor/GLFW"]
 	path = Beati/vendor/GLFW
 	url = https://github.com/TheCherno/GLFW
+[submodule "Beati/vendor/imgui"]
+	path = Beati/vendor/imgui
+	url = https://github.com/TheCherno/ImGui
