@@ -1,0 +1,31 @@
+﻿cl : línea de comandos  warning D9025: invalidando '/MT' con '/MD'
+  SandboxApp.cpp
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Events\Event.h(1,1): warning C4828: El archivo contiene un carácter que comienza en el desplazamiento 0x56d y que no es válido en el juego de caracteres del origen actual (página de códigos 65001).
+  (compilando archivo de origen "src/SandboxApp.cpp")
+  
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Layer.h(22,15): warning C4251: "Beati::Layer::m_DebugName": "std::basic_string<char,std::char_traits<char>,std::allocator<char>>" debe tener una interfaz DLL para que la usen los clientes de "Beati::Layer"
+  (compilando archivo de origen "src/SandboxApp.cpp")
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xstring(522,7):
+      vea la declaración de 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Application.h(33,33): warning C4251: "Beati::Application::m_Window": "std::unique_ptr<Beati::Window,std::default_delete<Beati::Window>>" debe tener una interfaz DLL para que la usen los clientes de "Beati::Application"
+  (compilando archivo de origen "src/SandboxApp.cpp")
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(3332,7):
+      vea la declaración de 'std::unique_ptr<Beati::Window,std::default_delete<Beati::Window>>'
+  
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Application.h(35,14): warning C4251: "Beati::Application::m_LayerStack": "Beati::LayerStack" debe tener una interfaz DLL para que la usen los clientes de "Beati::Application"
+  (compilando archivo de origen "src/SandboxApp.cpp")
+      C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\LayerStack.h(10,8):
+      vea la declaración de 'Beati::LayerStack'
+  
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Log.h(20,42): warning C4251: "Beati::Log::s_CoreLogger": "std::shared_ptr<spdlog::logger>" debe tener una interfaz DLL para que la usen los clientes de "Beati::Log"
+  (compilando archivo de origen "src/SandboxApp.cpp")
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(1557,7):
+      vea la declaración de 'std::shared_ptr<spdlog::logger>'
+  
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Log.h(21,42): warning C4251: "Beati::Log::s_ClientLogger": "std::shared_ptr<spdlog::logger>" debe tener una interfaz DLL para que la usen los clientes de "Beati::Log"
+  (compilando archivo de origen "src/SandboxApp.cpp")
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(1557,7):
+      vea la declaración de 'std::shared_ptr<spdlog::logger>'
+  
+  Sandbox.vcxproj -> C:\Users\Chavix\source\repos\Beati\bin\Release-windows-x86_64\Sandbox\Sandbox.exe

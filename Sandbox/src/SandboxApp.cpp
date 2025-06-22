@@ -17,7 +17,7 @@ public:
 
 	void OnUpdate() override
 	{
-		BE_CORE_INFO("EjemploCapa actualizada");
+		//BE_CORE_INFO("EjemploCapa actualizada"); 
 	}
 
 	void OnEvent(Beati::Event& event) override
