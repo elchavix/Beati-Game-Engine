@@ -1,12 +1,15 @@
 #include "bepch.h"
 #include "ImGuiLayer.h"
 #include "imgui.h"
-#include "backends/imgui_impl_glfw.h"
 
 #include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
-#include "GLFW/glfw3.h"
 #include "Beati/Application.h"
 #include "Beati/Log.h"
+#include "Beati/ImGui/KeyMap.h"
+
+// Temporal
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace Beati {
 	ImGuiLayer* ImGuiLayer::s_Instance = nullptr;
@@ -61,7 +64,16 @@ namespace Beati {
 
 	void ImGuiLayer::OnEvent(Event& event)
 	{
-		// Handle events for ImGui
+		EventDispatcher dispatcher(event);
+		dispatcher.Dispatch<MouseButtonPressedEvent>(BE_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressed));
+		dispatcher.Dispatch<MouseButtonReleasedEvent>(BE_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleased));
+		dispatcher.Dispatch<MouseMovedEvent>(BE_BIND_EVENT_FN(ImGuiLayer::OnMouseMoved));
+		dispatcher.Dispatch<MouseScrolledEvent>(BE_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolled));
+		dispatcher.Dispatch<KeyPressedEvent>(BE_BIND_EVENT_FN(ImGuiLayer::OnKeyPressed));
+		dispatcher.Dispatch<KeyReleasedEvent>(BE_BIND_EVENT_FN(ImGuiLayer::OnKeyReleased));
+		dispatcher.Dispatch<KeyTypedEvent>(BE_BIND_EVENT_FN(ImGuiLayer::OnKeyTyped));
+		dispatcher.Dispatch<WindowResizeEvent>(BE_BIND_EVENT_FN(ImGuiLayer::OnWindowResize));
+
 	}
 
 	void ImGuiLayer::Begin()
@@ -71,4 +83,101 @@ namespace Beati {
 	void ImGuiLayer::End()
 	{
 	}
+
+	bool ImGuiLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseDown[e.GetMouseButton()] = true;
+
+		return false; // Allow other layers to handle the event
+	}
+
+	bool ImGuiLayer::OnMouseButtonReleased(MouseButtonReleasedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseDown[e.GetMouseButton()] = false;
+
+		return false; // Allow other layers to handle the event
+
+	}
+
+	bool ImGuiLayer::OnMouseMoved(MouseMovedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MousePos = ImVec2(e.GetX(), e.GetY());
+
+		return false; // Allow other layers to handle the event
+	}
+
+	bool ImGuiLayer::OnMouseScrolled(MouseScrolledEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.MouseWheel += e.GetYOffset();
+		io.MouseWheelH += e.GetXOffset();
+
+		return false; // Allow other layers to handle the event
+	}
+
+	bool ImGuiLayer::OnKeyPressed(KeyPressedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		ImGuiKey key = MapGLFWKeyToImGuiKey(e.GetKeyCode());
+		if (key != ImGuiKey_None)
+			io.AddKeyEvent(key, true); // true = presionado
+
+		// Modificadores
+		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		io.AddKeyEvent(ImGuiMod_Ctrl, glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS);
+		io.AddKeyEvent(ImGuiMod_Shift, glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS);
+		io.AddKeyEvent(ImGuiMod_Alt, glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_ALT) == GLFW_PRESS);
+		io.AddKeyEvent(ImGuiMod_Super, glfwGetKey(window, GLFW_KEY_LEFT_SUPER) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SUPER) == GLFW_PRESS);
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnKeyReleased(KeyReleasedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		ImGuiKey key = MapGLFWKeyToImGuiKey(e.GetKeyCode());
+		if (key != ImGuiKey_None)
+			io.AddKeyEvent(key, false); // false = soltado
+
+		// Modificadores actualizados también
+		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		io.AddKeyEvent(ImGuiMod_Ctrl, glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS);
+		io.AddKeyEvent(ImGuiMod_Shift, glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS);
+		io.AddKeyEvent(ImGuiMod_Alt, glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_ALT) == GLFW_PRESS);
+		io.AddKeyEvent(ImGuiMod_Super, glfwGetKey(window, GLFW_KEY_LEFT_SUPER) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SUPER) == GLFW_PRESS);
+
+		return false;
+	}
+
+	bool ImGuiLayer::OnKeyTyped(KeyTypedEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		int keycode = e.GetKeyCode();
+		if (keycode < 0 || keycode > 0xFFFF)
+		{
+			BE_CORE_ERROR("Key code out of range: {0}", keycode);
+			return false; // Invalid key code, do not process
+		}
+
+		io.AddInputCharacter((unsigned short)keycode);
+
+		return false; // Allow other layers to handle the event
+
+	}
+
+
+	bool ImGuiLayer::OnWindowResize(WindowResizeEvent& e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+		io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+		glViewport(0, 0, e.GetWidth(), e.GetHeight()); // Temporary fix for viewport size
+
+
+		return false; // Allow other layers to handle the event
+	}
+
 }

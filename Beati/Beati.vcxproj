@@ -175,6 +175,7 @@
   <ItemGroup>
     <ClCompile Include="src\Beati\Application.cpp" />
     <ClCompile Include="src\Beati\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Beati\ImGui\KeyMap.h" />
     <ClCompile Include="src\Beati\Layer.cpp" />
     <ClCompile Include="src\Beati\LayerStack.cpp" />
     <ClCompile Include="src\Beati\Log.cpp" />
