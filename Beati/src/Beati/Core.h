@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef BE_PLATFORM_WINDOWS
+#if BE_DYNAMIC_LINK
 	#ifdef BE_BUILD_DLL
 		#define BEATI_API __declspec(dllexport)
 	#else
 		#define BEATI_API __declspec(dllimport)
 	#endif // BE_BUILD_DLL
+#else
+	#define BEATI_API
+#endif
 #else
 	#error Beati only supports Windows at the moment!
 #endif // BE_PLATFORM_WINDOWS

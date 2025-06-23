@@ -4,7 +4,6 @@
 #include "Beati/Core.h"
 
 
-
 namespace Beati {
 
 	enum class EventType
@@ -47,7 +46,7 @@ namespace Beati {
 			return GetCategoryFlags() & static_cast<int>(category);
 		}
 
-		bool Handled = false; // TODO: Quiz· hacerlo protected.
+		bool Handled = false; // TODO: Quiz√° hacerlo protected.
 	};
 
 	class EventDispatcher

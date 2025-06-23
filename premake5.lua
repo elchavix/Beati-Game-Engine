@@ -23,10 +23,10 @@ include "Beati/vendor/imgui"
 
 project "Beati"  
 	location "Beati"  
-	kind "SharedLib"  
+	kind "StaticLib"  
 	language "C++"  
 	cppdialect "C++17"  
-	staticruntime "off"
+	staticruntime "on"
 
 	targetdir ("bin/".. outputdir .. "/%{prj.name}")  
 	objdir ("bin-int/".. outputdir .. "/%{prj.name}")  
@@ -42,6 +42,12 @@ project "Beati"
 		"%{prj.name}/vendor/glm/glm/**.inl",
 		"%{prj.name}/vendor/glm/glm/**.h"
 	}  
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS",
+		"_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING"
+	}
 
 	includedirs  
 	{  
@@ -75,26 +81,20 @@ project "Beati"
 			"GLFW_INCLUDE_NONE"
 		}  
 
-		postbuildcommands  
-		{  
-
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")  
-		}  
-
 	filter "configurations:Debug"  
 		defines { "BE_DEBUG" }  
 		runtime "Debug"
-		symbols "On"  
+		symbols "on"  
 
 	filter "configurations:Release"  
 		defines { "BE_RELEASE" }  
 		runtime "Release"
-		optimize "On"  
+		optimize "on"  
 
 	filter "configurations:Dist"  
 		defines { "BE_DIST" }  
 		runtime "Release"
-		optimize "On"  
+		optimize "on"  
 
 
 project "Sandbox"  
@@ -102,7 +102,7 @@ project "Sandbox"
 	kind "ConsoleApp"  
 	language "C++"  
 	cppdialect "C++17"
-	staticruntime "off"
+	staticruntime "on"
 
 	targetdir ("bin/".. outputdir .. "/%{prj.name}")  
 	objdir ("bin-int/".. outputdir .. "/%{prj.name}")  
@@ -117,6 +117,7 @@ project "Sandbox"
 	{  
 		"Beati/vendor/spdlog/include",
 		"Beati/src",
+		"Beati/vendor",
 		"%{includeDir.glm}"
 	}  
 
@@ -140,14 +141,14 @@ project "Sandbox"
 	filter "configurations:Debug"  
 		defines { "BE_DEBUG" }  
 		runtime "Debug"
-		symbols "On"  
+		symbols "on"  
 
 	filter "configurations:Release"  
 		defines { "BE_RELEASE" }  
 		runtime "Release"
-		optimize "On"  
+		optimize "on"  
 
 	filter "configurations:Dist"  
 		defines { "BE_DIST" }
 		runtime "Release"
-		optimize "On"
+		optimize "on"
