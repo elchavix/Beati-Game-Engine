@@ -15,6 +15,7 @@ includeDir["spdlog"] = "Beati/vendor/spdlog/include"
 includeDir["GLFW"] = "Beati/vendor/GLFW/include"
 includeDir["Glad"] = "Beati/vendor/Glad/include"
 includeDir["ImGui"] = "Beati/vendor/imgui"
+includeDir["glm"] = "Beati/vendor/glm"
 
 include "Beati/vendor/GLFW"
 include "Beati/vendor/Glad"
@@ -36,7 +37,10 @@ project "Beati"
 	files  
 	{  
 		"%{prj.name}/src/**.h",  
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/glm/glm/**.h"
 	}  
 
 	includedirs  
@@ -45,7 +49,8 @@ project "Beati"
 		"%{includeDir.spdlog}",
 		"%{includeDir.GLFW}",
 		"%{includeDir.Glad}",
-		"%{includeDir.ImGui}"
+		"%{includeDir.ImGui}",
+		"%{includeDir.glm}"
 	}  
 
 	buildoptions { "/utf-8" }
@@ -110,8 +115,9 @@ project "Sandbox"
 
 	includedirs  
 	{  
+		"Beati/vendor/spdlog/include",
 		"Beati/src",
-		"Beati/vendor/spdlog/include"  
+		"%{includeDir.glm}"
 	}  
 
 	buildoptions { "/utf-8" }

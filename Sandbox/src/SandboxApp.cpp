@@ -3,7 +3,10 @@
 class EjemploCapa : public Beati::Layer
 {
 public:
-	EjemploCapa() : Layer("EjemploCapa") {}
+	EjemploCapa() : Layer("EjemploCapa")
+	{
+
+	}
 
 	void OnAttach() override
 	{
