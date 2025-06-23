@@ -7,6 +7,8 @@
 #include "Beati/Events/Event.h"
 #include "Beati/Events/ApplicationEvent.h"
 
+#include "Beati/ImGui/ImGuiLayer.h"
+
 
 
 namespace Beati {
@@ -31,6 +33,7 @@ namespace Beati {
 		bool OnWindowClose(Event& e);
 
 		std::unique_ptr<class Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

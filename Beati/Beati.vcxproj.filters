@@ -99,9 +99,6 @@
     <ClInclude Include="src\Beati\Window.h">
       <Filter>src\Beati</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>src\Platform\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -1412,9 +1409,6 @@
     <ClCompile Include="src\Beati\Log.cpp">
       <Filter>src\Beati</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>src\Platform\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1424,5 +1418,6 @@
     <ClCompile Include="src\bepch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Beati\ImGui\ImGuiBuild.cpp" />
   </ItemGroup>
 </Project>
