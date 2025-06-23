@@ -18,11 +18,15 @@ public:
 	void OnUpdate() override
 	{
 		//BE_CORE_INFO("EjemploCapa actualizada"); 
+		if (Beati::Input::IsMouseButtonPressed(BE_MOUSE_BUTTON_LEFT))
+		{
+			BE_CORE_INFO("Click izquierdo precionado");
+		}
 	}
 
 	void OnEvent(Beati::Event& event) override
 	{
-		BE_CORE_TRACE("Evento en EjemploCapa: {0}", event.ToString());
+		// BE_CORE_TRACE("Evento en EjemploCapa: {0}", event.ToString());
 	}
 };
 

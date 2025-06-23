@@ -25,6 +25,7 @@ project "Beati"
 	kind "SharedLib"  
 	language "C++"  
 	cppdialect "C++17"  
+	staticruntime "off"
 
 	targetdir ("bin/".. outputdir .. "/%{prj.name}")  
 	objdir ("bin-int/".. outputdir .. "/%{prj.name}")  
@@ -60,7 +61,6 @@ project "Beati"
 
 	filter "system:windows"  
 		cppdialect "C++17"  
-		staticruntime "On"  
 		systemversion "latest"  
 
 		defines  
@@ -72,22 +72,23 @@ project "Beati"
 
 		postbuildcommands  
 		{  
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")  
+
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")  
 		}  
 
 	filter "configurations:Debug"  
 		defines { "BE_DEBUG" }  
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"  
 
 	filter "configurations:Release"  
 		defines { "BE_RELEASE" }  
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"  
 
 	filter "configurations:Dist"  
 		defines { "BE_DIST" }  
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"  
 
 
@@ -95,7 +96,8 @@ project "Sandbox"
 	location "Sandbox"  
 	kind "ConsoleApp"  
 	language "C++"  
-	cppdialect "C++17"  
+	cppdialect "C++17"
+	staticruntime "off"
 
 	targetdir ("bin/".. outputdir .. "/%{prj.name}")  
 	objdir ("bin-int/".. outputdir .. "/%{prj.name}")  
@@ -121,7 +123,6 @@ project "Sandbox"
 
 	filter "system:windows"  
 		cppdialect "C++17"  
-		staticruntime "On"  
 		systemversion "latest"  
 
 		defines  
@@ -132,15 +133,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"  
 		defines { "BE_DEBUG" }  
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"  
 
 	filter "configurations:Release"  
 		defines { "BE_RELEASE" }  
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"  
 
 	filter "configurations:Dist"  
 		defines { "BE_DIST" }
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"

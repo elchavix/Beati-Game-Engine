@@ -5,6 +5,8 @@
 
 #include <glad/glad.h>
 
+#include "Input.h"
+
 namespace Beati {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -66,6 +68,8 @@ namespace Beati {
 			{
 				layer->OnUpdate();
 			}
+
+
 
 			m_Window->OnUpdate();
 		}
