@@ -1389,6 +1389,11 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\Beati\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Beati\Renderer\Shader.h" />
+    <ClInclude Include="src\Beati\Renderer\Buffer.h" />
+    <ClInclude Include="src\Beati\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Application.cpp">
@@ -1418,5 +1423,11 @@
     <ClCompile Include="src\bepch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Beati\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Beati\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Beati\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>

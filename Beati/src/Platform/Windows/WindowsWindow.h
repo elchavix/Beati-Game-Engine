@@ -4,6 +4,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Beati/Renderer/GraphicsContext.h"
+
 namespace Beati {
 
 	class WindowsWindow : public Window
@@ -29,6 +31,7 @@ namespace Beati {
 		virtual void Shutdown();
 
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
