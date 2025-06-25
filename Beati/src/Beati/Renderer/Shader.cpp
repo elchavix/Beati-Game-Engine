@@ -35,7 +35,7 @@ namespace Beati {
 	{
 		// Create an empty vertex shader handle
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-
+		
 		// Send the vertex shader source code to GL
 		// Note that std::string's .c_str is NULL character terminated.
 		const GLchar* source = (const GLchar*)vertexSrc.c_str();
@@ -44,7 +44,7 @@ namespace Beati {
 		// Compile the vertex shader
 		glCompileShader(vertexShader);
 
-		GLint isCompiled = 0;
+		GLint isCompiled = GL_FALSE;
 		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &isCompiled);
 		if (isCompiled == GL_FALSE)
 		{
@@ -107,7 +107,7 @@ namespace Beati {
 		glLinkProgram(program);
 
 		// Note the different functions here: glGetProgram* instead of glGetShader*.
-		GLint isLinked = 0;
+		GLint isLinked = GL_FALSE;
 		glGetProgramiv(program, GL_LINK_STATUS, (int*)&isLinked);
 		if (isLinked == GL_FALSE)
 		{

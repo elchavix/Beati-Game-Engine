@@ -1,8 +1,15 @@
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Renderer\Buffer.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\Buffer.obj
 C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Application.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\Application.obj
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\ImGui\ImGuiBuild.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\ImGuiBuild.obj
 C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\ImGui\ImGuiLayer.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\ImGuiLayer.obj
 C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Layer.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\Layer.obj
 C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\LayerStack.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\LayerStack.obj
 C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Log.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\Log.obj
-C:\Users\Chavix\source\repos\Beati\Beati\src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\ImGuiOpenGLRenderer.obj
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Renderer\Renderer.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\Renderer.obj
+C:\Users\Chavix\source\repos\Beati\Beati\src\Beati\Renderer\Shader.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\Shader.obj
+C:\Users\Chavix\source\repos\Beati\Beati\src\Platform\OpenGL\OpenGLBuffer.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\OpenGLBuffer.obj
+C:\Users\Chavix\source\repos\Beati\Beati\src\Platform\OpenGL\OpenGLBuffer.h;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\OpenGLBuffer.obj
+C:\Users\Chavix\source\repos\Beati\Beati\src\Platform\OpenGL\OpenGLContext.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\OpenGLContext.obj
+C:\Users\Chavix\source\repos\Beati\Beati\src\Platform\Windows\WindowsInput.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\WindowsInput.obj
 C:\Users\Chavix\source\repos\Beati\Beati\src\Platform\Windows\WindowsWindow.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\WindowsWindow.obj
 C:\Users\Chavix\source\repos\Beati\Beati\src\bepch.cpp;C:\Users\Chavix\source\repos\Beati\bin-int\Release-windows-x86_64\Beati\bepch.obj

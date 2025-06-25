@@ -59,7 +59,7 @@ namespace Beati {
 			in vec3 v_Position; // Receive position from vertex shader
 			void main()
 			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0); // Orange color
+				color = vec4(v_Position * 0.5 + 0.8, 1.0);
 			}
 		)";
 		
