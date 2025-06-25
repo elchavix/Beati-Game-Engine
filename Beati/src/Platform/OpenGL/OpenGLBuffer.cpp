@@ -8,6 +8,9 @@ namespace Beati {
 	// ------------------------------------------ Vertex Buffer ------------------------------------------
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
+		: m_Size(size)
+		, m_Layout()
+		, m_RendererID(0)
 	{
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
