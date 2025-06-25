@@ -146,6 +146,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Beati\Renderer\Buffer.h" />
     <ClInclude Include="src\Beati.h" />
     <ClInclude Include="src\Beati\Application.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\Beati\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Beati\Renderer\Renderer.h" />
     <ClInclude Include="src\Beati\Renderer\Shader.h" />
+    <ClInclude Include="src\Beati\Renderer\VertexArray.h" />
     <ClInclude Include="src\Beati\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
@@ -601,6 +603,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Beati\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Beati\Application.cpp" />
     <ClCompile Include="src\Beati\ImGui\ImGuiBuild.cpp" />
@@ -610,6 +613,7 @@
     <ClCompile Include="src\Beati\Log.cpp" />
     <ClCompile Include="src\Beati\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Beati\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Beati\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
