@@ -3,6 +3,24 @@
 
 
 namespace Beati {
-	// Initialize the static member variable
-	RendererAPI Renderer::s_RendererAPI = RendererAPI::OpenGL;
+	
+	void Renderer::BeginScene()
+	{
+		// RendererCommand::BeginScene();
+	}
+
+	void Renderer::EndScene()
+	{
+		// RendererCommand::EndScene();
+	}
+
+	//void Renderer::Init()
+	//{
+	//	// RendererCommand::Init();
+	//}
+
+	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
+	{
+		RendererCommand::DrawIndexed(vertexArray);
+	}
 }

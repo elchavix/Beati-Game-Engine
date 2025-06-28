@@ -1,20 +1,17 @@
 #pragma once
+#include "RendererCommand.h"
+
 
 namespace Beati {
-	enum class RendererAPI
-	{
-		None = 0,
-		OpenGL = 1,
-		DirectX = 2,
-		Vulkan = 3
-	};
-
-
+	
 	class Renderer
 	{
 	public:
-		inline static RendererAPI GetRendererAPI() { return s_RendererAPI; }
-	private:
-		static RendererAPI s_RendererAPI;
+		static void BeginScene();
+		static void EndScene();
+		// static void Init();
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	};
 }

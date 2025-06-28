@@ -3,7 +3,7 @@
 
 #include "Beati/Log.h"
 
-#include <glad/glad.h>
+#include "Beati/Renderer/Renderer.h"
 
 #include "Input.h"
 
@@ -167,16 +167,20 @@ namespace Beati {
 		// Run the application logic
 		while (m_Running)
 		{
-			glClearColor(0.2f, 0.4f, 0.5f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
 
+			RendererCommand::SetClearColor({ 0.2f, 0.4f, 0.5f, 1.0f });
+			RendererCommand::Clear();
+
+			Renderer::BeginScene();
+			
 			m_Shader2->Bind();
-			m_SquareVA->Bind();
-			glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0);
+			Renderer::Submit(m_SquareVA);
 
 			m_Shader->Bind();
-			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, 0);
+			Renderer::Submit(m_VertexArray);
+
+			Renderer::EndScene();
+
 
 			for (Layer* layer : m_LayerStack)
 			{

@@ -1396,6 +1396,9 @@
     <ClInclude Include="src\Beati\Renderer\Renderer.h" />
     <ClInclude Include="src\Beati\Renderer\VertexArray.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Beati\Renderer\RendererCommand.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Beati\Renderer\RendererAPI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Application.cpp">
@@ -1433,5 +1436,8 @@
     <ClCompile Include="src\Beati\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Beati\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Beati\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\Beati\Renderer\RendererCommand.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
   </ItemGroup>
 </Project>
