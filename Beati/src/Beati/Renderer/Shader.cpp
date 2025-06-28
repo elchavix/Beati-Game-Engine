@@ -2,6 +2,7 @@
 #include "Shader.h"
 #include "glad/glad.h"
 #include "Beati/Log.h"
+#include <glm/gtc/type_ptr.hpp>
 
 
 namespace Beati {
@@ -24,6 +25,17 @@ namespace Beati {
 	void Shader::Unbind()
 	{
 		glUseProgram(0);
+	}
+
+	void Shader::UploadloadUniformMatrix4f(const std::string& name, const glm::mat4& matrix)
+	{
+		GLint location = GetUniformLocation(name);
+		if (location == -1)
+		{
+			BE_CORE_ERROR("Uniform '{0}' not found in shader!", name);
+			return;
+		}
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
 	void Shader::Compile(const std::string& vertexSrc, const std::string& fragmentSrc)

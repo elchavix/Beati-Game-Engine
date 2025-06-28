@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include <glm/glm.hpp>
 
 namespace Beati {
 	class Shader
@@ -11,6 +11,8 @@ namespace Beati {
 
 		void Bind();
 		void Unbind();
+
+		void UploadloadUniformMatrix4f(const std::string& name, const glm::mat4& matrix);
 	private:
 		uint32_t m_RendererID;
 

@@ -1399,6 +1399,7 @@
     <ClInclude Include="src\Beati\Renderer\RendererCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Beati\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Beati\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Application.cpp">
@@ -1439,5 +1440,6 @@
     <ClCompile Include="src\Beati\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Beati\Renderer\RendererCommand.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Beati\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>
