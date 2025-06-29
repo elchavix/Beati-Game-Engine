@@ -12,6 +12,16 @@
 #include "Beati/Log.h"
 
 #include "Beati/ImGui/ImGuiLayer.h"
+// ------------ Renderer -----------
+#include "Beati/Renderer/Renderer.h"
+#include "Beati/Renderer/RendererCommand.h"
+// ---------------------------------
+
+#include "Beati/Renderer/Buffer.h"
+#include "Beati/Renderer/Shader.h"
+#include "Beati/Renderer/VertexArray.h"
+#include "Beati/Renderer/OrthographicCamera.h"
+
 
 // ---- EntryPonit para windows ----
 #include "Beati/EntryPoint.h"

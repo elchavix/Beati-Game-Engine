@@ -14,7 +14,7 @@ namespace Beati {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application() : m_Camera(-1.6f, 1.6f, -0.9f, 0.9f) // Initialize the camera with orthographic projection parameters
+	Application::Application() // Initialize the camera with orthographic projection parameters
 	{
 		BE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -24,111 +24,6 @@ namespace Beati {
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
-
-		m_VertexArray.reset(VertexArray::Create());
-
-		float vertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, // Vertex 1 (X, Y, Z, R, G, B, A)
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, // Vertex 2 (X, Y, Z, R, G, B, A)
-			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f  // Vertex 3 (X, Y, Z, R, G, B, A)
-		};
-		std::shared_ptr<VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-
-		
-		BufferLayout layout = {
-			{ ShaderDataType::Float3, "a_Position"},
-			{ ShaderDataType::Float4, "a_Color"}
-		};
-
-		vertexBuffer->SetLayout(layout);
-		m_VertexArray->AddVertexBuffer(vertexBuffer);
-
-		unsigned int indices[3] = { 0, 1, 2 };
-
-		std::shared_ptr<IndexBuffer> indexBuffer;
-		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-
-		m_VertexArray->SetIndexBuffer(indexBuffer);
-
-		m_SquareVA.reset(VertexArray::Create());
-
-		float squareVertices[3 * 4] = {
-			-0.75f, -0.75f, 0.0f, // Bottom Left
-			 0.75f, -0.75f, 0.0f, // Bottom Right
-			 0.75f,  0.75f, 0.0f, // Top Right
-			-0.75f,  0.75f, 0.0f  // Top Left
-		};
-
-		std::shared_ptr<VertexBuffer> squareVB;
-		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-
-		squareVB->SetLayout({
-			{ ShaderDataType::Float3, "a_Position"}
-			});
-
-		m_SquareVA->AddVertexBuffer(squareVB);
-
-		unsigned int squareIndices[6] = {
-			0, 1, 2, // First Triangle
-			2, 3, 0  // Second Triangle
-		};
-		std::shared_ptr<IndexBuffer> squareIB;
-		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-		m_SquareVA->SetIndexBuffer(squareIB);
-
-		std::string vertexShaderSource = R"(
-			#version 330 core
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
-			uniform mat4 u_ViewProjectionMatrix;
-			out vec3 v_Position;
-			out vec4 v_Color;
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjectionMatrix * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string fragmentShaderSource = R"(
-			#version 330 core
-			out vec4 color;
-			in vec3 v_Position;
-			in vec4 v_Color;
-			void main()
-			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				color = v_Color;
-			}
-		)";
-		
-		m_Shader.reset(new Shader(vertexShaderSource, fragmentShaderSource));
-
-		std::string vertexShaderSrc2 = R"(
-			#version 330 core
-			layout(location = 0) in vec3 a_Position;
-			uniform mat4 u_ViewProjectionMatrix;
-			out vec3 v_Position;
-			void main()
-			{
-				v_Position = a_Position;
-				gl_Position = u_ViewProjectionMatrix * vec4(a_Position, 1.0);
-			}
-		)";
-
-		std::string fragmentShaderSrc2 = R"(
-			#version 330 core
-			out vec4 color;
-			in vec3 v_Position;
-			void main()
-			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-			}
-		)";
-
-		m_Shader2.reset(new Shader(vertexShaderSrc2, fragmentShaderSrc2));
 	}
 
 	Application::~Application()
@@ -170,22 +65,6 @@ namespace Beati {
 		// Run the application logic
 		while (m_Running)
 		{
-
-			RendererCommand::SetClearColor({ 0.2f, 0.4f, 0.5f, 1.0f });
-			RendererCommand::Clear();
-
-			// m_Camera.SetPosition({0.5f, 0.5f, 0.0f})
-			m_Camera.SetRotation(m_Camera.GetRotation() + 0.1f); // Rotate camera based on mouse movement
-
-			Renderer::BeginScene(m_Camera);
-			
-			Renderer::Submit(m_Shader2, m_SquareVA);
-
-			Renderer::Submit(m_Shader, m_VertexArray);
-
-			Renderer::EndScene();
-
-
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();
