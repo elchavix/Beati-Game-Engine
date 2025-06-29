@@ -122,26 +122,27 @@ public:
 
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Beati::Timestep delta) override
 	{
 		if (Beati::Input::IsKeyPressed(BE_KEY_W))
-			m_Camera.SetPosition(m_Camera.GetPosition() - glm::vec3(0.0f, m_CameraSpeed, 0.0f));
+			m_Camera.SetPosition(m_Camera.GetPosition() - glm::vec3(0.0f, m_CameraSpeed * delta, 0.0f));
 		else if (Beati::Input::IsKeyPressed(BE_KEY_S))
-			m_Camera.SetPosition(m_Camera.GetPosition() + glm::vec3(0.0f, m_CameraSpeed, 0.0f));
+			m_Camera.SetPosition(m_Camera.GetPosition() + glm::vec3(0.0f, m_CameraSpeed * delta, 0.0f));
 		if (Beati::Input::IsKeyPressed(BE_KEY_D))
-			m_Camera.SetPosition(m_Camera.GetPosition() - glm::vec3(m_CameraSpeed, 0.0f, 0.0f));
+			m_Camera.SetPosition(m_Camera.GetPosition() - glm::vec3(m_CameraSpeed * delta, 0.0f, 0.0f));
 		else if (Beati::Input::IsKeyPressed(BE_KEY_A))
-			m_Camera.SetPosition(m_Camera.GetPosition() + glm::vec3(m_CameraSpeed, 0.0f, 0.0f));
+			m_Camera.SetPosition(m_Camera.GetPosition() + glm::vec3(m_CameraSpeed * delta, 0.0f, 0.0f));
+		if (Beati::Input::IsKeyPressed(BE_KEY_E))
+			m_Camera.SetRotation(m_Camera.GetRotation() + m_CameraRotationSpeed * delta);
+		else if (Beati::Input::IsKeyPressed(BE_KEY_Q))
+			m_Camera.SetRotation(m_Camera.GetRotation() - m_CameraRotationSpeed * delta);
 		if (Beati::Input::IsKeyPressed(BE_KEY_R))
-			m_CameraRotationSpeed = 1.0f;
+			m_CameraRotationSpeed = 20.0f;
 		if (Beati::Input::IsKeyReleased(BE_KEY_R))
-			m_CameraRotationSpeed = 0.1f;
+			m_CameraRotationSpeed = 10.0f;
 
-		
 		Beati::RendererCommand::SetClearColor({ 0.2f, 0.4f, 0.5f, 1.0f });
 		Beati::RendererCommand::Clear();
-
-		m_Camera.SetRotation(m_Camera.GetRotation() + m_CameraRotationSpeed); // Rotate camera based on mouse movement
 
 		Beati::Renderer::BeginScene(m_Camera);
 
@@ -165,8 +166,8 @@ private:
 
 	Beati::OrthographicCamera m_Camera;
 
-	float m_CameraSpeed = 0.04f; // Speed of camera movement
-	float m_CameraRotationSpeed = 0.1f; // Speed of camera rotation
+	float m_CameraSpeed = 0.4f; // Speed of camera movement
+	float m_CameraRotationSpeed = 10.0f; // Speed of camera rotation
 };
 
 

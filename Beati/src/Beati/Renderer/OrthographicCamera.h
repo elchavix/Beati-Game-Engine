@@ -1,19 +1,13 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 
 namespace Beati {
 
 	class OrthographicCamera
 	{
 	public:
-		OrthographicCamera(float left, float right, float bottom, float top)
-			: m_ProjectionMatrix(glm::ortho(left, right, bottom, top, -1.0f, 1.0f)),
-			m_ViewMatrix(1.0f)
-		{
-			m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
-		}
+		OrthographicCamera(float left, float right, float bottom, float top);
 
 		inline void SetPosition(const glm::vec3& position) { m_Position = position; UpdateViewMatrix(); }
 
@@ -28,7 +22,7 @@ namespace Beati {
 		inline const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
 
 	private:
-		inline void UpdateViewMatrix() { m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::rotate(glm::mat4(1.0f), glm::radians(m_Rotation), glm::vec3(0.0f, 0.0f, 1.0f)); m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix; }
+		void UpdateViewMatrix();
 
 	private:
 		glm::mat4 m_ProjectionMatrix;

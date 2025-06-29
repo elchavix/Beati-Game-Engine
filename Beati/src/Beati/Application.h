@@ -14,6 +14,8 @@
 #include "Beati/Renderer/VertexArray.h"
 #include "Beati/Renderer/OrthographicCamera.h"
 
+#include "Beati/Core/Timestep.h"
+
 
 
 
@@ -42,6 +44,7 @@ namespace Beati {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

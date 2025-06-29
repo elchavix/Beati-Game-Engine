@@ -7,6 +7,8 @@
 
 #include "Input.h"
 
+#include "GLFW/glfw3.h"
+
 
 namespace Beati {
 
@@ -65,19 +67,20 @@ namespace Beati {
 		// Run the application logic
 		while (m_Running)
 		{
+			float time = (float)glfwGetTime(); // TODO: Llavarlo a Platform/
+			Timestep deltaTime = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+			
 			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnUpdate();
+				layer->OnUpdate(deltaTime);
 			}
-
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnImGuiRender();
 			}
 			m_ImGuiLayer->End();
-
-
 			m_Window->OnUpdate();
 		}
 	}

@@ -12,6 +12,9 @@
 #include "Beati/Log.h"
 
 #include "Beati/ImGui/ImGuiLayer.h"
+
+#include "Beati/Core/Timestep.h"
+
 // ------------ Renderer -----------
 #include "Beati/Renderer/Renderer.h"
 #include "Beati/Renderer/RendererCommand.h"

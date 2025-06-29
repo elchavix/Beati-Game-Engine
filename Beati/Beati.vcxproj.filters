@@ -1400,6 +1400,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Beati\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Beati\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Beati\Core\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Application.cpp">

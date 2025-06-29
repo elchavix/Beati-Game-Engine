@@ -27,6 +27,7 @@ namespace Beati {
 		shader->Bind(); 
 		shader->UploadloadUniformMatrix4f("u_ViewProjectionMatrix", s_SceneData->ViewProjectionMatrix);
 		
+		vertexArray->Bind();
 		RendererCommand::DrawIndexed(vertexArray);
 	}
 }
