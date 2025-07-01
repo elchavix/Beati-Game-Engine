@@ -22,6 +22,7 @@
 
 #include "Beati/Renderer/Buffer.h"
 #include "Beati/Renderer/Shader.h"
+#include "Beati/Renderer/Texture.h"
 #include "Beati/Renderer/VertexArray.h"
 #include "Beati/Renderer/OrthographicCamera.h"
 

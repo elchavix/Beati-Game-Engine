@@ -16,6 +16,7 @@ includeDir["GLFW"] = "Beati/vendor/GLFW/include"
 includeDir["Glad"] = "Beati/vendor/Glad/include"
 includeDir["ImGui"] = "Beati/vendor/imgui"
 includeDir["glm"] = "Beati/vendor/glm"
+includeDir["stb_image"] = "Beati/vendor/stb_image"
 
 include "Beati/vendor/GLFW"
 include "Beati/vendor/Glad"
@@ -38,6 +39,8 @@ project "Beati"
 	{  
 		"%{prj.name}/src/**.h",  
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
 		"%{prj.name}/vendor/glm/glm/**.h"
@@ -56,7 +59,9 @@ project "Beati"
 		"%{includeDir.GLFW}",
 		"%{includeDir.Glad}",
 		"%{includeDir.ImGui}",
-		"%{includeDir.glm}"
+		"%{includeDir.glm}",
+		"%{includeDir.stb_image}",
+
 	}  
 
 	buildoptions { "/utf-8" }

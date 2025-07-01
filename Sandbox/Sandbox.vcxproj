@@ -144,6 +144,9 @@
       <Project>{AA5FE20C-1674-0ABE-DFF5-AD1D4BC906EF}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\test.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
