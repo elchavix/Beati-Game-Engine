@@ -40,7 +40,7 @@ namespace Beati {
 	private:
 		bool OnWindowClose(Event& e);
 
-		std::unique_ptr<class Window> m_Window;
+		Ref<class Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;

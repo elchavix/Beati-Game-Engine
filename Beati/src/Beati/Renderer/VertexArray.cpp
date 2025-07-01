@@ -14,6 +14,7 @@ namespace Beati {
 			case RendererAPI::API::Vulkan:	BE_CORE_ASSERT(false, "RendererAPI::Vulkan is currently not supported!"); return nullptr;
 			case RendererAPI::API::DirectX:	BE_CORE_ASSERT(false, "RendererAPI::DirectX is currently not supported!"); return nullptr;
 		}
+		BE_CORE_ASSERT(false, "Unknown RendererAIP")
 		return nullptr;
 	}
 

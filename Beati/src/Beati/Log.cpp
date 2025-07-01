@@ -5,8 +5,8 @@
 
 namespace Beati
 {
-	std::shared_ptr<spdlog::logger> Beati::Log::s_CoreLogger;
-	std::shared_ptr<spdlog::logger> Beati::Log::s_ClientLogger;
+	Ref<spdlog::logger> Beati::Log::s_CoreLogger;
+	Ref<spdlog::logger> Beati::Log::s_ClientLogger;
 	
 
 	void Log::Init()

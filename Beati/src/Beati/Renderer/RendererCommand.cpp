@@ -22,7 +22,7 @@ namespace Beati {
 		RendererAPI::Init();
 	}
 
-	void RendererCommand::DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount)
+	void RendererCommand::DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount)
 	{
 		RendererAPI::DrawIndexed(vertexArray, indexCount);
 	}*/

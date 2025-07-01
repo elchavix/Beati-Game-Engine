@@ -1,5 +1,6 @@
 #include "bepch.h"
 #include "Renderer.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 
 
 namespace Beati {
@@ -22,11 +23,12 @@ namespace Beati {
 	//	// RendererCommand::Init();
 	//}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray)
+	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		shader->Bind(); 
-		shader->UploadloadUniformMatrix4f("u_ViewProjectionMatrix", s_SceneData->ViewProjectionMatrix);
-		
+		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadloadUniformMatrix4f("u_ViewProjectionMatrix", s_SceneData->ViewProjectionMatrix);
+		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadloadUniformMatrix4f("u_Transform", transform);
+
 		vertexArray->Bind();
 		RendererCommand::DrawIndexed(vertexArray);
 	}
