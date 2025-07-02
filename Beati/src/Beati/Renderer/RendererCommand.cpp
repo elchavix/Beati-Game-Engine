@@ -6,7 +6,7 @@
 namespace Beati {
 
 	RendererAPI* RendererCommand::s_RendererAPI = new OpenGLRendererAPI();
-
+	
 	/*void RendererCommand::BeginScene()
 	{
 		RendererAPI::BeginScene();
@@ -17,10 +17,6 @@ namespace Beati {
 		RendererAPI::EndScene();
 	}
 
-	void RendererCommand::Init()
-	{
-		RendererAPI::Init();
-	}
 
 	void RendererCommand::DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount)
 	{

@@ -151,7 +151,7 @@ public:
 
 		m_TextureShader.reset(Beati::Shader::Create(vertexShaderTexture, fragmentShaderTexture));
 
-		m_Texture = (Beati::Texture2D::Create("assets/textures/cubo.png"));
+		m_Texture = (Beati::Texture2D::Create("assets/textures/test2.png"));
 
 		std::dynamic_pointer_cast<Beati::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Beati::OpenGLShader>(m_TextureShader)->UploadloadUniformInt("u_Texture", 0);

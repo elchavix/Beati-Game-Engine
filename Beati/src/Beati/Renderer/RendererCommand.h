@@ -7,7 +7,7 @@ namespace Beati {
 	class RendererCommand
 	{
 	public:
-		// inline static void Init() { s_RendererAPI->Init(); }
+		inline static void Init() { s_RendererAPI->Init(); }
 
 		//inline static void SetViewport(int x, int y, int width, int height) { s_RendererAPI->SetViewport(x, y, width, height); }
 		
