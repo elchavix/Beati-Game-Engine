@@ -1,13 +1,19 @@
 #pragma once
 #include "Beati/Renderer/Shader.h"
+
 #include <glm/glm.hpp>
+
+// Temporary. TODO: Remove this
+typedef unsigned int GLenum;
 
 namespace Beati {
 	class OpenGLShader : public Shader
 	{
 	public:
+		OpenGLShader(const std::string& filepath);
 		OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
 		virtual ~OpenGLShader();
+
 
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
@@ -21,11 +27,14 @@ namespace Beati {
 
 		void UploadloadUniformMatrix3f(const std::string& name, const glm::mat3& matrix);
 		void UploadloadUniformMatrix4f(const std::string& name, const glm::mat4& matrix);
+		std::string ReadFile(const std::string& filepath);
+		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
+	private:
+		void Compile(const std::unordered_map<GLenum, std::string>& shaderSrc);
+
+		int GetUniformLocation(const std::string& name);
+
 	private:
 		uint32_t m_RendererID;
-
-		void Compile(const std::string& vertexSrc, const std::string& fragmentSrc);
-		uint32_t CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
-		int GetUniformLocation(const std::string& name);
 	};
 }
