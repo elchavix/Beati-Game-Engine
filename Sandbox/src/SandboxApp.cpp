@@ -94,7 +94,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(Beati::Shader::Create(vertexShaderSource, fragmentShaderSource));
+		m_Shader = (Beati::Shader::Create("CubosShader", vertexShaderSource, fragmentShaderSource));
 
 		std::string vertexShaderSrc2 = R"(
 			#version 330 core
@@ -120,14 +120,14 @@ public:
 			}
 		)";
 
-		m_Shader2.reset(Beati::Shader::Create(vertexShaderSrc2, fragmentShaderSrc2));
+		m_Shader2 = (Beati::Shader::Create("CubosShader", vertexShaderSrc2, fragmentShaderSrc2));
 
-		m_TextureShader.reset(Beati::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = (Beati::Texture2D::Create("assets/textures/test2.png"));
 
-		std::dynamic_pointer_cast<Beati::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Beati::OpenGLShader>(m_TextureShader)->UploadloadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Beati::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Beati::OpenGLShader>(textureShader)->UploadloadUniformInt("u_Texture", 0);
 	}
 
 	void OnAttach() override
@@ -180,10 +180,11 @@ public:
 
 		}
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
 
-		Beati::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
+		Beati::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Tiangle
 		// Beati::Renderer::Submit(m_Shader, m_VertexArray);
@@ -203,10 +204,12 @@ public:
 	}
 
 private:
+
+	Beati::ShaderLibrary m_ShaderLibrary;
 	Beati::Ref<Beati::Shader> m_Shader;
 	Beati::Ref<Beati::VertexArray> m_VertexArray;
 
-	Beati::Ref<Beati::Shader> m_Shader2, m_TextureShader;
+	Beati::Ref<Beati::Shader> m_Shader2;
 	Beati::Ref<Beati::VertexArray> m_SquareVA;
 
 	Beati::Ref<Beati::Texture2D> m_Texture;

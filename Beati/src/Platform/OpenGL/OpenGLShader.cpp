@@ -29,9 +29,17 @@ namespace Beati {
 		auto shaderSources = PreProcess(source);
 
 		Compile(shaderSources);
+
+		// Extract the name from the filepath
+		m_Name = filepath.substr(filepath.find_last_of("/\\") + 1);
+		if (m_Name.find_last_of('.') != std::string::npos)
+			m_Name = m_Name.substr(0, m_Name.find_last_of('.')); // Remove file extension
+		else
+			BE_CORE_WARN("Shader file '{0}' has no extension!", filepath);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
+		: m_Name(name)
 	{
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
@@ -47,7 +55,7 @@ namespace Beati {
 	std::string OpenGLShader::ReadFile(const std::string& filepath)
 	{
 		std::string result;
-		std::ifstream in(filepath, std::ios::in, std::ios::binary);
+		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -178,7 +186,9 @@ namespace Beati {
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSrc)
 	{
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> glShaderIDs;
+		BE_CORE_ASSERT(shaderSrc.size() <= 2, "OpenGL only supports 2 shaders at a time (vertex and fragment).");
+		std::array<GLenum, 2> glShaderIDs;
+		int shaderIndex = 0;
 
 		for (auto& kv : shaderSrc)
 		{
@@ -207,7 +217,7 @@ namespace Beati {
 				return;
 			}
 			glAttachShader(program, shader);
-			glShaderIDs.push_back(shader);
+			glShaderIDs[shaderIndex++] = shader;
 		}
 		
 		glLinkProgram(program);

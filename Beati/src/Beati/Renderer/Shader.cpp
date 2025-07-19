@@ -4,13 +4,14 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Beati {
-	
-	Shader* Shader::Create(const std::string& filepath)
+	// Shader class
+
+	Ref<Shader> Shader::Create(const std::string& filepath)
 	{
 		switch (Renderer::GetAPI())
 		{
 			case RendererAPI::API::None:		BE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:	return new OpenGLShader(filepath);
+			case RendererAPI::API::OpenGL:	return std::make_shared<OpenGLShader>(filepath);
 			case RendererAPI::API::Vulkan:	BE_CORE_ASSERT(false, "RendererAPI::Vulkan is currently not supported!"); return nullptr;
 			case RendererAPI::API::DirectX:	BE_CORE_ASSERT(false, "RendererAPI::DirectX is currently not supported!"); return nullptr;
 		}
@@ -18,17 +19,52 @@ namespace Beati {
 			return nullptr;
 	}
 
-	Shader* Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
+	Ref<Shader> Shader::Create(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
 		switch (Renderer::GetAPI())
 		{
 			case RendererAPI::API::None:		BE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:	return new OpenGLShader(vertexSrc, fragmentSrc);
+			case RendererAPI::API::OpenGL:	return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
 			case RendererAPI::API::Vulkan:	BE_CORE_ASSERT(false, "RendererAPI::Vulkan is currently not supported!"); return nullptr;
 			case RendererAPI::API::DirectX:	BE_CORE_ASSERT(false, "RendererAPI::DirectX is currently not supported!"); return nullptr;
 		}
 		BE_CORE_ASSERT(false, "Unknown RendererAIP")
 		return nullptr;
+	}
+
+	// ShaderLibary class
+
+	void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
+	{
+		BE_CORE_ASSERT(!Exists(name), "Shader already exists!");
+		m_Shaders[name] = shader;
+	}
+
+	void ShaderLibrary::Add(const Ref<Shader>& shader)
+	{
+		auto& name = shader->GetName();
+		Add(name, shader);
+	}
+
+
+	Ref<Shader> ShaderLibrary::Load(const std::string& filepath)
+	{
+		auto shader = Shader::Create(filepath);
+		Add(shader);
+		return Ref<Shader>(shader);
+	}
+
+	Ref<Shader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
+	{
+		auto shader = Shader::Create(filepath);
+		Add(name, shader);
+		return Ref<Shader>(shader);
+	}
+
+	Ref<Shader> ShaderLibrary::Get(const std::string& name)
+	{
+		BE_CORE_ASSERT(Exists(name), "Shader not found!");
+		return m_Shaders[name];
 	}
 
 }
