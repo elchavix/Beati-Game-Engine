@@ -1,5 +1,4 @@
 #include "bepch.h"
-#include "Beati/Log.h"
 
 #include "WindowsWindow.h"
 

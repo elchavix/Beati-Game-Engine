@@ -3,7 +3,7 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Beati/LayerStack.h"
+#include "Beati/Core/LayerStack.h"
 #include "Beati/Events/Event.h"
 #include "Beati/Events/ApplicationEvent.h"
 
@@ -39,10 +39,15 @@ namespace Beati {
 
 	private:
 		bool OnWindowClose(Event& e);
+		
+		bool OnWindowResize(WindowResizeEvent& e);
+
 
 		Ref<class Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
+
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 	private:

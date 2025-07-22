@@ -13,6 +13,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Beati/Core/Log.h"
+
 
 #ifdef BE_PLATFORM_WINDOWS
 	#include <Windows.h>

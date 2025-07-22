@@ -1,6 +1,5 @@
 #include "bepch.h"
 #include "OpenGLShader.h"
-#include "Beati/Log.h"
 
 #include <fstream>
 #include <glad/glad.h>

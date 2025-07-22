@@ -60,17 +60,38 @@
     <ClInclude Include="src\Beati.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Beati\Application.h">
-      <Filter>src\Beati</Filter>
+    <ClInclude Include="src\Beati\Core\Application.h">
+      <Filter>src\Beati\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Beati\Core.h">
-      <Filter>src\Beati</Filter>
+    <ClInclude Include="src\Beati\Core\Core.h">
+      <Filter>src\Beati\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Core\EntryPoint.h">
+      <Filter>src\Beati\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Core\Input.h">
+      <Filter>src\Beati\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Core\KeyCodes.h">
+      <Filter>src\Beati\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Core\Layer.h">
+      <Filter>src\Beati\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Core\LayerStack.h">
+      <Filter>src\Beati\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Core\Log.h">
+      <Filter>src\Beati\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Core\MouseButtonCodes.h">
+      <Filter>src\Beati\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Beati\Core\Timestep.h">
       <Filter>src\Beati\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Beati\EntryPoint.h">
-      <Filter>src\Beati</Filter>
+    <ClInclude Include="src\Beati\Core\Window.h">
+      <Filter>src\Beati\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Beati\Events\ApplicationEvent.h">
       <Filter>src\Beati\Events</Filter>
@@ -90,24 +111,6 @@
     <ClInclude Include="src\Beati\ImGui\KeyMap.h">
       <Filter>src\Beati\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Beati\Input.h">
-      <Filter>src\Beati</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Beati\KeyCodes.h">
-      <Filter>src\Beati</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Beati\Layer.h">
-      <Filter>src\Beati</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Beati\LayerStack.h">
-      <Filter>src\Beati</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Beati\Log.h">
-      <Filter>src\Beati</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Beati\MouseButtonCodes.h">
-      <Filter>src\Beati</Filter>
-    </ClInclude>
     <ClInclude Include="src\Beati\Renderer\Buffer.h">
       <Filter>src\Beati\Renderer</Filter>
     </ClInclude>
@@ -115,6 +118,9 @@
       <Filter>src\Beati\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Beati\Renderer\OrthographicCamera.h">
+      <Filter>src\Beati\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Renderer\OrthographicCameraController.h">
       <Filter>src\Beati\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Beati\Renderer\Renderer.h">
@@ -134,9 +140,6 @@
     </ClInclude>
     <ClInclude Include="src\Beati\Renderer\VertexArray.h">
       <Filter>src\Beati\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Beati\Window.h">
-      <Filter>src\Beati</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1454,8 +1457,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Beati\Application.cpp">
-      <Filter>src\Beati</Filter>
+    <ClCompile Include="src\Beati\Core\Application.cpp">
+      <Filter>src\Beati\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Beati\Core\Layer.cpp">
+      <Filter>src\Beati\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Beati\Core\LayerStack.cpp">
+      <Filter>src\Beati\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Beati\Core\Log.cpp">
+      <Filter>src\Beati\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Beati\ImGui\ImGuiBuild.cpp">
       <Filter>src\Beati\ImGui</Filter>
@@ -1463,19 +1475,13 @@
     <ClCompile Include="src\Beati\ImGui\ImGuiLayer.cpp">
       <Filter>src\Beati\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Beati\Layer.cpp">
-      <Filter>src\Beati</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Beati\LayerStack.cpp">
-      <Filter>src\Beati</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Beati\Log.cpp">
-      <Filter>src\Beati</Filter>
-    </ClCompile>
     <ClCompile Include="src\Beati\Renderer\Buffer.cpp">
       <Filter>src\Beati\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Beati\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Beati\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Beati\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Beati\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Beati\Renderer\Renderer.cpp">

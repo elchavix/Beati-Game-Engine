@@ -13,6 +13,11 @@ namespace Beati {
 		RendererCommand::Init();
 	}
 
+	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	{
+		RendererCommand::SetViewport(0, 0, width, height);
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
 		s_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();

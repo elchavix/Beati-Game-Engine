@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include <GLFW/glfw3.h>
-#include "Beati/Application.h"
+#include "Beati/Core/Application.h"
 
 namespace Beati {
 

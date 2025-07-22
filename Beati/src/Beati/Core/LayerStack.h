@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Beati/Core.h"
-#include "Beati/Layer.h"
+#include "Beati/Core/Core.h"
+#include "Beati/Core/Layer.h"
 
 #include <vector>
 

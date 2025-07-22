@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Beati/Core.h"
+#include "Beati/Core/Core.h"
 
 
 namespace Beati {

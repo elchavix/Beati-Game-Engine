@@ -6,8 +6,7 @@
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 
-#include "Beati/Application.h"
-#include "Beati/Log.h"
+#include "Beati/Core/Application.h"
 #include "Beati/ImGui/KeyMap.h"
 
 // Temporal

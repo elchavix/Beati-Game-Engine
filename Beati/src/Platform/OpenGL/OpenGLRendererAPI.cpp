@@ -25,14 +25,14 @@ namespace Beati {
 
 	void OpenGLRendererAPI::EndScene()
 	{
-	}
+	}*/
 
 	void OpenGLRendererAPI::SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
 	{
-		BE_PROFILE_FUNCTION();
+		// BE_PROFILE_FUNCTION();
 
 		glViewport(x, y, width, height);
-	}*/
+	}
 
 	void OpenGLRendererAPI::Init()
 	{

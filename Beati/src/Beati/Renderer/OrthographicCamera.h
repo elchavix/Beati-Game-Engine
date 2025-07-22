@@ -9,6 +9,8 @@ namespace Beati {
 	public:
 		OrthographicCamera(float left, float right, float bottom, float top);
 
+		void SetProjection(float left, float right, float bottom, float top);
+
 		inline void SetPosition(const glm::vec3& position) { m_Position = position; UpdateViewMatrix(); }
 
 		inline void SetRotation(float rotation) { m_Rotation = rotation; UpdateViewMatrix(); }
@@ -32,5 +34,4 @@ namespace Beati {
 		glm::vec3 m_Position = { 0.0f, 0.0f, 0.0f };
 		float m_Rotation = 0.0f;
 	};
-
 }

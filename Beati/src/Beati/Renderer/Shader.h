@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <unordered_map>
-#include "Beati/Core.h"
+#include "Beati/Core/Core.h"
 
 namespace Beati {
 	class Shader

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Beati/Window.h"
+#include "Beati/Core/Window.h"
 
 #include <GLFW/glfw3.h>
 

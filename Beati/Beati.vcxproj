@@ -147,32 +147,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Beati.h" />
-    <ClInclude Include="src\Beati\Application.h" />
-    <ClInclude Include="src\Beati\Core.h" />
+    <ClInclude Include="src\Beati\Core\Application.h" />
+    <ClInclude Include="src\Beati\Core\Core.h" />
+    <ClInclude Include="src\Beati\Core\EntryPoint.h" />
+    <ClInclude Include="src\Beati\Core\Input.h" />
+    <ClInclude Include="src\Beati\Core\KeyCodes.h" />
+    <ClInclude Include="src\Beati\Core\Layer.h" />
+    <ClInclude Include="src\Beati\Core\LayerStack.h" />
+    <ClInclude Include="src\Beati\Core\Log.h" />
+    <ClInclude Include="src\Beati\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Beati\Core\Timestep.h" />
-    <ClInclude Include="src\Beati\EntryPoint.h" />
+    <ClInclude Include="src\Beati\Core\Window.h" />
     <ClInclude Include="src\Beati\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Beati\Events\Event.h" />
     <ClInclude Include="src\Beati\Events\KeyEvent.h" />
     <ClInclude Include="src\Beati\Events\MouseEvent.h" />
     <ClInclude Include="src\Beati\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Beati\ImGui\KeyMap.h" />
-    <ClInclude Include="src\Beati\Input.h" />
-    <ClInclude Include="src\Beati\KeyCodes.h" />
-    <ClInclude Include="src\Beati\Layer.h" />
-    <ClInclude Include="src\Beati\LayerStack.h" />
-    <ClInclude Include="src\Beati\Log.h" />
-    <ClInclude Include="src\Beati\MouseButtonCodes.h" />
     <ClInclude Include="src\Beati\Renderer\Buffer.h" />
     <ClInclude Include="src\Beati\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Beati\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Beati\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Beati\Renderer\Renderer.h" />
     <ClInclude Include="src\Beati\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Beati\Renderer\RendererCommand.h" />
     <ClInclude Include="src\Beati\Renderer\Shader.h" />
     <ClInclude Include="src\Beati\Renderer\Texture.h" />
     <ClInclude Include="src\Beati\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Beati\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -613,14 +614,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Beati\Application.cpp" />
+    <ClCompile Include="src\Beati\Core\Application.cpp" />
+    <ClCompile Include="src\Beati\Core\Layer.cpp" />
+    <ClCompile Include="src\Beati\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Beati\Core\Log.cpp" />
     <ClCompile Include="src\Beati\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Beati\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Beati\Layer.cpp" />
-    <ClCompile Include="src\Beati\LayerStack.cpp" />
-    <ClCompile Include="src\Beati\Log.cpp" />
     <ClCompile Include="src\Beati\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Beati\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Beati\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Beati\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Beati\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Beati\Renderer\RendererCommand.cpp" />

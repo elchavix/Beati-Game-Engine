@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Beati/Core.h"
+#include "Beati/Core/Core.h"
 #include "Beati/Events/Event.h"
 #include "Beati/Core/Timestep.h"
 

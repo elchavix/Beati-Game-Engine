@@ -1,5 +1,5 @@
 #pragma once
-#include "Beati/log.h"
+#include "Beati/Core/log.h"
 
 namespace Beati {
 

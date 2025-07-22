@@ -1,7 +1,7 @@
 #pragma once
 
 #include "bepch.h"
-#include "Beati/Core.h"
+#include "Beati/Core/Core.h"
 
 
 namespace Beati {

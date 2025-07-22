@@ -2,7 +2,6 @@
 #include "OpenGLTexture.h"
 
 #include "stb_image.h"
-#include "Beati/Log.h"
 
 #include <glad/glad.h>
 

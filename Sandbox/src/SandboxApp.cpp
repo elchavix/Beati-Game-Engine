@@ -11,7 +11,7 @@
 class EjemploCapa : public Beati::Layer
 {
 public:
-	EjemploCapa() : Layer("EjemploCapa"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+	EjemploCapa() : Layer("EjemploCapa"), m_CameraController(1280.0f / 720.0f, true)
 	{
 		m_VertexArray.reset(Beati::VertexArray::Create());
 
@@ -142,27 +142,14 @@ public:
 
 	void OnUpdate(Beati::Timestep delta) override
 	{
-		if (Beati::Input::IsKeyPressed(BE_KEY_W))
-			m_Camera.SetPosition(m_Camera.GetPosition() - glm::vec3(0.0f, m_CameraSpeed * delta, 0.0f));
-		else if (Beati::Input::IsKeyPressed(BE_KEY_S))
-			m_Camera.SetPosition(m_Camera.GetPosition() + glm::vec3(0.0f, m_CameraSpeed * delta, 0.0f));
-		if (Beati::Input::IsKeyPressed(BE_KEY_D))
-			m_Camera.SetPosition(m_Camera.GetPosition() - glm::vec3(m_CameraSpeed * delta, 0.0f, 0.0f));
-		else if (Beati::Input::IsKeyPressed(BE_KEY_A))
-			m_Camera.SetPosition(m_Camera.GetPosition() + glm::vec3(m_CameraSpeed * delta, 0.0f, 0.0f));
-		if (Beati::Input::IsKeyPressed(BE_KEY_E))
-			m_Camera.SetRotation(m_Camera.GetRotation() + m_CameraRotationSpeed * delta);
-		else if (Beati::Input::IsKeyPressed(BE_KEY_Q))
-			m_Camera.SetRotation(m_Camera.GetRotation() - m_CameraRotationSpeed * delta);
-		if (Beati::Input::IsKeyPressed(BE_KEY_R))
-			m_CameraRotationSpeed = 20.0f;
-		if (Beati::Input::IsKeyReleased(BE_KEY_R))
-			m_CameraRotationSpeed = 10.0f;
+		// ---- Update ----
+		m_CameraController.OnUpdate(delta);
 
+		// ---- Render ----
 		Beati::RendererCommand::SetClearColor({ 0.2f, 0.4f, 0.5f, 1.0f });
 		Beati::RendererCommand::Clear();
 
-		Beati::Renderer::BeginScene(m_Camera);
+		Beati::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -201,6 +188,14 @@ public:
 
 	void OnEvent(Beati::Event& event) override
 	{
+		m_CameraController.OnEvent(event);
+
+		if (event.GetEventType() == Beati::EventType::WindowResize)
+		{
+			// Beati::WindowResizeEvent& re = (Beati::WindowResizeEvent&)event;
+			// float zoomLvl = m_CameraController.GetZoomLevel();
+		}
+
 	}
 
 private:
@@ -214,10 +209,7 @@ private:
 
 	Beati::Ref<Beati::Texture2D> m_Texture;
 
-	Beati::OrthographicCamera m_Camera;
-
-	float m_CameraSpeed = 0.4f; // Speed of camera movement
-	float m_CameraRotationSpeed = 10.0f; // Speed of camera rotation
+	Beati::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
