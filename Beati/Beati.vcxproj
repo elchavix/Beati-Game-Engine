@@ -146,6 +146,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Beati\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Beati.h" />
     <ClInclude Include="src\Beati\Core\Application.h" />
     <ClInclude Include="src\Beati\Core\Core.h" />
@@ -614,6 +615,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Beati\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Beati\Core\Application.cpp" />
     <ClCompile Include="src\Beati\Core\Layer.cpp" />
     <ClCompile Include="src\Beati\Core\LayerStack.cpp" />

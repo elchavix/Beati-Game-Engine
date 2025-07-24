@@ -19,6 +19,9 @@ namespace Beati {
 		inline OrthographicCamera& GetCamera() { return m_Camera; }
 		inline const OrthographicCamera& GetCamera() const { return m_Camera; }
 
+		inline glm::vec3 GetCameraPosition() const { return m_CameraPosition; }
+		inline glm::mat4 GetCameraViewMatrix() const { return m_Camera.GetViewMatrix(); }
+
 		inline float GetZoomLevel() const { return m_ZoomLevel; }
 		inline void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; }
 	private:

@@ -19,6 +19,7 @@
 
 // ------------ Renderer -----------
 #include "Beati/Renderer/Renderer.h"
+#include "Beati/Renderer/Renderer2D.h"
 #include "Beati/Renderer/RendererCommand.h"
 // ---------------------------------
 
@@ -27,8 +28,3 @@
 #include "Beati/Renderer/Texture.h"
 #include "Beati/Renderer/VertexArray.h"
 
-
-
-// ---- EntryPonit para windows ----
-#include "Beati/Core/EntryPoint.h"
-// ---------------------------------

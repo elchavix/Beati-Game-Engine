@@ -1,5 +1,7 @@
 #include <Beati.h>
-
+// ---- EntryPonit para windows ----
+#include "Beati/Core/EntryPoint.h"
+// ---------------------------------
 #include "Platform/OpenGL/OpenGLShader.h"
 
 #include <imgui/imgui.h>
@@ -7,14 +9,16 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
+
 
 class EjemploCapa : public Beati::Layer
 {
 public:
 	EjemploCapa() : Layer("EjemploCapa"), m_CameraController(1280.0f / 720.0f, true)
 	{
-		m_VertexArray.reset(Beati::VertexArray::Create());
-
+		m_VertexArray = Beati::VertexArray::Create();
+		 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, // Vertex 1 (X, Y, Z, R, G, B, A)
 			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, // Vertex 2 (X, Y, Z, R, G, B, A)
@@ -39,7 +43,7 @@ public:
 
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
-		m_SquareVA.reset(Beati::VertexArray::Create());
+		m_SquareVA = Beati::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,	// Bottom Left
@@ -220,7 +224,8 @@ class Sandbox : public Beati::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new EjemploCapa());
+		// PushLayer(new EjemploCapa());
+		PushLayer(new Sandbox2D());
 	}
 
     ~Sandbox() {}

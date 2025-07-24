@@ -105,6 +105,83 @@ namespace Beati {
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetInt(const std::string& name, int value)
+	{
+		GLint location = GetUniformLocation(name);
+		if (location == -1)
+		{
+			BE_CORE_ERROR("Uniform '{0}' not found in shader!", name);
+			return;
+		}
+		glUniform1i(location, value);
+	}
+
+	void OpenGLShader::SetFloat(const std::string& name, float value)
+	{
+		GLint location = GetUniformLocation(name);
+		if (location == -1)
+		{
+			BE_CORE_ERROR("Uniform '{0}' not found in shader!", name);
+			return;
+		}
+		glUniform1f(location, value);
+	}
+
+	void OpenGLShader::SetFloat2(const std::string& name, const glm::vec2& value)
+	{
+		GLint location = GetUniformLocation(name);
+		if (location == -1)
+		{
+			BE_CORE_ERROR("Uniform '{0}' not found in shader!", name);
+			return;
+		}
+		glUniform2f(location, value.x, value.y);
+	}
+
+	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
+	{
+		GLint location = GetUniformLocation(name);
+		if (location == -1)
+		{
+			BE_CORE_ERROR("Uniform '{0}' not found in shader!", name);
+			return;
+		}
+		glUniform3f(location, value.x, value.y, value.z);
+	}
+
+	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
+	{
+		GLint location = GetUniformLocation(name);
+		if (location == -1)
+		{
+			BE_CORE_ERROR("Uniform '{0}' not found in shader!", name);
+			return;
+		}
+		glUniform4f(location, value.x, value.y, value.z, value.w);
+	}
+
+	void OpenGLShader::SetMat3(const std::string& name, const glm::mat3& matrix)
+	{
+		GLint location = GetUniformLocation(name);
+		if (location == -1)
+		{
+			BE_CORE_ERROR("Uniform '{0}' not found in shader!", name);
+			return;
+		}
+		glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
+	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& matrix)
+	{
+		GLint location = GetUniformLocation(name);
+		if (location == -1)
+		{
+			BE_CORE_ERROR("Uniform '{0}' not found in shader!", name);
+			return;
+		}
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
 	void OpenGLShader::UploadloadUniformInt(const std::string& name, int value)
 	{
 		GLint location = GetUniformLocation(name);
