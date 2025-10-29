@@ -137,6 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\.testLayers\TextEditor\TextEditor.cpp" />
+    <ClCompile Include="src\.testLayers\TextEditor\TextEditorApp.cpp" />
     <ClCompile Include="src\Sandbox2D.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
@@ -146,6 +148,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\.testLayers\TextEditor\TextEditor.h" />
+    <ClInclude Include="src\.testLayers\TextEditor\TextEditorApp.h" />
     <ClInclude Include="src\Sandbox2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

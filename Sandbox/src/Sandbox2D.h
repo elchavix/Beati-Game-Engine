@@ -4,7 +4,7 @@
 
 class Sandbox2D : public Beati::Layer
 {
-public:
+public: 
 	Sandbox2D();
 	virtual ~Sandbox2D() = default;
 

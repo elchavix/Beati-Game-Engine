@@ -146,6 +146,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Beati\Debug\Instrumentation.h" />
     <ClInclude Include="src\Beati\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Beati.h" />
     <ClInclude Include="src\Beati\Core\Application.h" />

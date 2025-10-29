@@ -7,11 +7,14 @@ namespace Beati {
 	{
 	public:
 		OpenGLTexture2D(const std::string& path);
+		OpenGLTexture2D(uint32_t width, uint32_t hight);
 
 		virtual ~OpenGLTexture2D();
 
 		inline virtual uint32_t GetWidth() const override { return m_Width; }
 		inline virtual uint32_t GetHeight() const override { return m_Height; }
+
+		virtual void SetData(const void* data, uint32_t size) override;
 
 		virtual void Bind(uint32_t slot) const override;
 

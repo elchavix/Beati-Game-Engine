@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include "Beati/Core/Log.h"
+#include "Beati/Debug/Instrumentation.h"
 
 
 #ifdef BE_PLATFORM_WINDOWS

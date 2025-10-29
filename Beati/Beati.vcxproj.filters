@@ -1456,6 +1456,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Beati\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\Beati\Debug\Instrumentation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Core\Application.cpp">

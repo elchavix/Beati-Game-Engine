@@ -55,12 +55,6 @@ namespace Beati {
 		s_Instance = nullptr;
 	}
 
-	void ImGuiLayer::OnImGuiRender()
-	{
-		
-		ImGui::ShowDemoWindow();
-	}
-
 	void ImGuiLayer::Begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();

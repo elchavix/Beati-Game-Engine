@@ -10,6 +10,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Sandbox2D.h"
+// #include ".testLayers/TextEditor/TextEditorApp.h"
 
 
 class EjemploCapa : public Beati::Layer
@@ -226,6 +227,7 @@ public:
 	{
 		// PushLayer(new EjemploCapa());
 		PushLayer(new Sandbox2D());
+		// PushLayer(new TextEditorApp());
 	}
 
     ~Sandbox() {}

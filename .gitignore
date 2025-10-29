@@ -1,0 +1,10 @@
+# Directorios
+.vs/
+bin/
+bin-int/
+
+# Archivos de usuario
+*.user
+
+# Directorio propio de capas
+.testLayers/
