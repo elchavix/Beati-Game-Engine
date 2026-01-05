@@ -7,11 +7,19 @@ namespace Beati {
 
 	// ------------------------------------------ Vertex Buffer ------------------------------------------
 
-	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
-		: m_Size(size)
-		, m_Layout()
-		, m_RendererID(0)
+	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
 	{
+		BE_PROFILE_FUNCTION();
+
+		glCreateBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+	}
+
+	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size) : m_Layout(), m_RendererID(0)
+	{
+		BE_PROFILE_FUNCTION();
+
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
@@ -19,17 +27,29 @@ namespace Beati {
 
 	OpenGLVertexBuffer::~OpenGLVertexBuffer()
 	{
+		BE_PROFILE_FUNCTION();
+
 		glDeleteBuffers(1, &m_RendererID);
 	}
 
 	void OpenGLVertexBuffer::Bind() const
 	{
+		BE_PROFILE_FUNCTION();
+
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 	}
 
 	void OpenGLVertexBuffer::Unbind() const
 	{
+		BE_PROFILE_FUNCTION();
+
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
+
+	void OpenGLVertexBuffer::SetData(const void* data, uint32_t size)
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 	}
 
 	// ------------------------------------------ Index Buffer ------------------------------------------
@@ -37,6 +57,8 @@ namespace Beati {
 	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count)
 		: m_Count(count)
 	{
+		BE_PROFILE_FUNCTION();
+
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32_t), indices, GL_STATIC_DRAW);
@@ -44,16 +66,22 @@ namespace Beati {
 
 	OpenGLIndexBuffer::~OpenGLIndexBuffer()
 	{
+		BE_PROFILE_FUNCTION();
+
 		glDeleteBuffers(1, &m_RendererID);
 	}
 
 	void OpenGLIndexBuffer::Bind() const
 	{
+		BE_PROFILE_FUNCTION();
+
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
 	}
 
 	void OpenGLIndexBuffer::Unbind() const
 	{
+		BE_PROFILE_FUNCTION();
+
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 

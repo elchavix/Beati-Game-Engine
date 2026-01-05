@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include=".testLayers">
+      <UniqueIdentifier>{C3495267-2FFF-CA5C-B8F3-C43324A8C160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include=".testLayers\TextEditor">
+      <UniqueIdentifier>{BEAB28AC-AAA5-51FE-9312-E80E7FABB76A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\SondBoxApp.cpp" />
+    <ClCompile Include="src\SandboxLayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\SandboxLayer.h" />
+  </ItemGroup>
+</Project>

@@ -4,7 +4,6 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Beati {
-	// Shader class
 
 	Ref<Shader> Shader::Create(const std::string& filepath)
 	{
@@ -32,8 +31,6 @@ namespace Beati {
 		return nullptr;
 	}
 
-	// ShaderLibary class
-
 	void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
 	{
 		BE_CORE_ASSERT(!Exists(name), "Shader already exists!");
@@ -51,14 +48,14 @@ namespace Beati {
 	{
 		auto shader = Shader::Create(filepath);
 		Add(shader);
-		return Ref<Shader>(shader);
+		return shader;
 	}
 
 	Ref<Shader> ShaderLibrary::Load(const std::string& name, const std::string& filepath)
 	{
 		auto shader = Shader::Create(filepath);
 		Add(name, shader);
-		return Ref<Shader>(shader);
+		return shader;
 	}
 
 	Ref<Shader> ShaderLibrary::Get(const std::string& name)

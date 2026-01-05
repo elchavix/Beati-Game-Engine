@@ -10,8 +10,6 @@
 
 namespace Beati {
 
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
-
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application() // Initialize the camera with orthographic projection parameters
@@ -19,8 +17,8 @@ namespace Beati {
 		BE_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 		// Constructor implementation
-		m_Window = Ref<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window = Window::Create();
+		m_Window->SetEventCallback(BE_BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
 
@@ -30,11 +28,14 @@ namespace Beati {
 
 	Application::~Application()
 	{
-		// Destructor implementation
+		BE_PROFILE_FUNCTION();
+
+		Renderer::Shutdown();
 	}
 
 	void Application::PushLayer(Layer* layer)
 	{
+		BE_PROFILE_FUNCTION();
 		// Push a layer onto the stack
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
@@ -42,49 +43,63 @@ namespace Beati {
 
 	void Application::PushOverlay(Layer* overlay)
 	{
+		BE_PROFILE_FUNCTION();
 		// Push an overlay onto the stack
 		m_LayerStack.PushOverlay(overlay);
 		overlay->OnAttach();
 	}
 
+	void Application::Close()
+	{
+		m_Running = false;
+	}
+
 	void Application::OnEvent(Event& e)
 	{
-		// Handle events
+		BE_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BE_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BE_BIND_EVENT_FN(Application::OnWindowResize));
 
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
-
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
 		{
-			(*--it)->OnEvent(e);
 			if (e.Handled)
 				break;
+			(*it)->OnEvent(e);
 		}
 	}
 
 	void Application::Run()
 	{
+		BE_PROFILE_FUNCTION();
 		// Run the application logic
 		while (m_Running)
 		{
+			BE_PROFILE_SCOPE("RunLoop");
 			float time = (float)glfwGetTime(); // TODO: Llavarlo a Platform/
 			Timestep deltaTime = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 			if (!m_Minimized)
 			{
-				for (Layer* layer : m_LayerStack)
 				{
-					layer->OnUpdate(deltaTime);
+					BE_PROFILE_SCOPE("LayerStack OnUpdate");
+					for (Layer* layer : m_LayerStack)
+					{
+						layer->OnUpdate(deltaTime);
+					}
 				}
-			}
 
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-			{
-				layer->OnImGuiRender();
+				m_ImGuiLayer->Begin();
+				{
+					BE_PROFILE_SCOPE("LayerStack OnImGuiUpdate");
+					for (Layer* layer : m_LayerStack)
+					{
+						layer->OnImGuiRender();
+					}
+				}
+				m_ImGuiLayer->End();
 			}
-			m_ImGuiLayer->End();
 			
 			m_Window->OnUpdate();
 		}
@@ -98,6 +113,8 @@ namespace Beati {
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		BE_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;

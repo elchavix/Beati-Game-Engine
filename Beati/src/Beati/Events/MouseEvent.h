@@ -5,7 +5,7 @@
 
 namespace Beati {
 
-	class BEATI_API MouseEvent : public Event
+	class MouseEvent : public Event
 	{
 	public:
 		inline float GetX() const { return m_X; }
@@ -20,7 +20,7 @@ namespace Beati {
 		float m_X, m_Y;
 	};
 
-	class BEATI_API MouseMovedEvent : public MouseEvent
+	class MouseMovedEvent : public MouseEvent
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -36,7 +36,7 @@ namespace Beati {
 		EVENT_CLASS_TYPE(MouseMoved);
 	};
 
-	class BEATI_API MouseScrolledEvent : public MouseEvent
+	class MouseScrolledEvent : public MouseEvent
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -58,7 +58,7 @@ namespace Beati {
 		float m_XOffset, m_YOffset;
 	};
 
-	class BEATI_API MouseButtonEvent : public MouseEvent
+	class MouseButtonEvent : public MouseEvent
 	{
 	public:
 		inline int GetMouseButton() const { return m_MouseButton; }
@@ -71,7 +71,7 @@ namespace Beati {
 		int m_MouseButton;
 	};
 
-	class BEATI_API MouseButtonPressedEvent : public MouseButtonEvent
+	class MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int mouseButton, float x, float y)
@@ -90,7 +90,7 @@ namespace Beati {
 		EVENT_CLASS_TYPE(MouseButtonPressed);
 	};
 
-	class BEATI_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int mouseButton, float x, float y)

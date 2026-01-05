@@ -78,8 +78,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BE_PLATFORM_WINDOWS;BE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Beati\vendor\spdlog\include;..\Beati\src;..\Beati\vendor;..\Beati\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Beati\vendor\spdlog\include;..\Beati\src;..\Beati\vendor;..\Beati\vendor\glm;..\Beati\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -96,8 +96,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BE_PLATFORM_WINDOWS;BE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Beati\vendor\spdlog\include;..\Beati\src;..\Beati\vendor;..\Beati\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Beati\vendor\spdlog\include;..\Beati\src;..\Beati\vendor;..\Beati\vendor\glm;..\Beati\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -118,8 +118,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>BE_PLATFORM_WINDOWS;BE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Beati\vendor\spdlog\include;..\Beati\src;..\Beati\vendor;..\Beati\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Beati\vendor\spdlog\include;..\Beati\src;..\Beati\vendor;..\Beati\vendor\glm;..\Beati\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -137,20 +137,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\.testLayers\TextEditor\TextEditor.cpp" />
-    <ClCompile Include="src\.testLayers\TextEditor\TextEditorApp.cpp" />
-    <ClCompile Include="src\Sandbox2D.cpp" />
-    <ClCompile Include="src\SandboxApp.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Beati\Beati.vcxproj">
       <Project>{AA5FE20C-1674-0ABE-DFF5-AD1D4BC906EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\.testLayers\TextEditor\TextEditor.h" />
-    <ClInclude Include="src\.testLayers\TextEditor\TextEditorApp.h" />
-    <ClInclude Include="src\Sandbox2D.h" />
+    <ClCompile Include="src\SondBoxApp.cpp" />
+    <ClCompile Include="src\SandboxLayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\SandboxLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

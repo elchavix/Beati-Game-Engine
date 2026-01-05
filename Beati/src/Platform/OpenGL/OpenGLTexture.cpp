@@ -10,6 +10,8 @@ namespace Beati {
 	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t hight)
 		: m_Width(width), m_Height(hight)
 	{
+		BE_PROFILE_FUNCTION();
+
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
 		glTextureStorage2D(m_RendererID, 1, GL_RGBA8, m_Width, m_Height);
 
@@ -23,9 +25,15 @@ namespace Beati {
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
 		: m_Path(path)
 	{
+		BE_PROFILE_FUNCTION();
+	
 		int width, height, channels;
 		stbi_set_flip_vertically_on_load(1);
-		stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		stbi_uc* data = nullptr;
+		{
+			BE_PROFILE_SCOPE("stbi_load OpenGLTexture2D::OpenGLTexture2D(const std::string&)");
+			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		}
 		if (!data)
 			BE_CORE_ERROR("stb_image error: {}", stbi_failure_reason());
 		BE_CORE_ASSERT(data, "Failed to load image!");
@@ -63,11 +71,15 @@ namespace Beati {
 
 	OpenGLTexture2D::~OpenGLTexture2D()
 	{
+		BE_PROFILE_FUNCTION();
+
 		glDeleteTextures(1, &m_RendererID);
 	}
 
 	void OpenGLTexture2D::SetData(const void* data, uint32_t size)
 	{
+		BE_PROFILE_FUNCTION();
+
 		uint32_t bpp = size / (m_Width * m_Height);
 		BE_CORE_ASSERT(bpp == 4 || bpp == 3, "Data must be in RGBA or RGB format!");
 
@@ -78,6 +90,8 @@ namespace Beati {
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
+		BE_PROFILE_FUNCTION();
+
 		glBindTextureUnit(slot, m_RendererID);
 	}
 

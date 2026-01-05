@@ -2,24 +2,11 @@
 #include "Beati/Renderer/OrthographicCamera.h"
 #include <glm/glm.hpp>
 
-#include <Platform/OpenGL/OpenGLTexture.h>
+// #include <Platform/OpenGL/OpenGLTexture.h>
+#include "Beati/Renderer/Texture.h"
+#include "Beati/Renderer/SubTexture2D.h"
 
 namespace Beati {
-
-	struct RendererStats
-	{
-		uint32_t DrawCalls = 0;
-		uint32_t QuadCount = 0;
-		uint32_t TextureCount = 0;
-
-		void Reset()
-		{
-			DrawCalls = 0;
-			QuadCount = 0;
-			TextureCount = 0;
-		}
-	};
-	
 	class Renderer2D
 	{
 	public:
@@ -28,18 +15,35 @@ namespace Beati {
 
 		static void BeginScene(const OrthographicCamera& camera);
 		static void EndScene();
+		static void Flush();
 
-		// Primitives
+		// Primitives Quads
 		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
-		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor = 1.0f);
-		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Beati::Texture2D>& texture, float tilingFactor = 1.0f);
+		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f)); // Add Setings parameter later (for now default)
+		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f)); // Add Setings parameter later (for now default)
+
+		// Primitives Quads rotation in radians
+		static void DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color);
+		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color);
+		static void DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
+		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 
 		// Text
-		static void DrawString(const std::string& text, const glm::vec3& position, float size, const glm::vec4& color);
 
 		// Stats
-		static RendererStats GetStats();
+		struct Statistics
+		{
+			uint32_t DrawCalls = 0;
+			uint32_t QuadCount = 0;
+			uint32_t GetTotalVertexCount() { return QuadCount * 4; }
+			uint32_t GetTotalIndexCount() { return QuadCount * 6; }
+		};
+		static void ResetStats();
+		static Statistics GetStats();
+	
+	private:
+		static void StartNewBatch();
 	};
 }
 

@@ -2,7 +2,7 @@
 
 #include "bepch.h"
 
-#include "Beati/Core/Core.h"
+#include "Beati/Core/Base.h"
 #include "Beati/Events/Event.h"
 
 namespace Beati {
@@ -20,7 +20,7 @@ namespace Beati {
 	};
 
 	// Interface representing a desktop system based Window
-	class BEATI_API Window
+	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
@@ -39,7 +39,7 @@ namespace Beati {
 
 		virtual void* GetNativeWindow() const = 0;
 
-		static Window* Create(const WindowsProps& props = WindowsProps());
+		static Scope<Window> Create(const WindowsProps& props = WindowsProps());
 	};
 }
 

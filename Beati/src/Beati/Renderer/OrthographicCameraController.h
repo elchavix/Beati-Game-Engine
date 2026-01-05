@@ -7,6 +7,17 @@
 #include "Beati/Events/MouseEvent.h"
 
 namespace Beati {
+
+	class OrthographicCameraBounds
+	{
+		public:
+		float Left, Right;
+		float Bottom, Top;
+
+		float GetWidth() const { return Right - Left; }
+		float GetHeight() const { return Top - Bottom; }
+	};
+
 	class OrthographicCameraController
 	{
 	public:
@@ -16,6 +27,8 @@ namespace Beati {
 
 		void OnEvent(Event& e);
 
+		void OnResize(float width, float height);
+
 		inline OrthographicCamera& GetCamera() { return m_Camera; }
 		inline const OrthographicCamera& GetCamera() const { return m_Camera; }
 
@@ -23,8 +36,12 @@ namespace Beati {
 		inline glm::mat4 GetCameraViewMatrix() const { return m_Camera.GetViewMatrix(); }
 
 		inline float GetZoomLevel() const { return m_ZoomLevel; }
-		inline void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; }
+		inline void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; CalculateView(); }
+
+		inline const OrthographicCameraBounds& GetBounds() const { return m_Bounds; }
 	private:
+		void CalculateView();
+
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);
 	private:
@@ -38,6 +55,7 @@ namespace Beati {
 		float m_CameraTranslationSpeed = 1.0f; // Speed of camera translation
 		float m_CameraRotationSpeed = 20.0f; // Speed of camera rotation
 
+		OrthographicCameraBounds m_Bounds;
 		OrthographicCamera m_Camera;
 	};
 

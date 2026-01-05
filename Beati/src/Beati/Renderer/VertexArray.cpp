@@ -9,7 +9,7 @@ namespace Beati {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:		BE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::None:	BE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
 			case RendererAPI::API::OpenGL:	return std::make_shared<OpenGLVertexArray>();
 			case RendererAPI::API::Vulkan:	BE_CORE_ASSERT(false, "RendererAPI::Vulkan is currently not supported!"); return nullptr;
 			case RendererAPI::API::DirectX:	BE_CORE_ASSERT(false, "RendererAPI::DirectX is currently not supported!"); return nullptr;

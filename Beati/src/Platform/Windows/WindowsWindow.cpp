@@ -18,18 +18,20 @@ namespace Beati {
 		BE_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	Window* Window::Create(const WindowsProps& props)
+	Scope<Window> Window::Create(const WindowsProps& props)
 	{
-		return new WindowsWindow(props);
+		return CreateScope<WindowsWindow>(props);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowsProps& props)
 	{
+		BE_PROFILE_FUNCTION();
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		BE_PROFILE_FUNCTION();
 		Shutdown();
 	}
 
@@ -154,12 +156,14 @@ namespace Beati {
 
 	void WindowsWindow::OnUpdate()
 	{
+		BE_PROFILE_FUNCTION();
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		BE_PROFILE_FUNCTION();
 		if (enabled)
 			glfwSwapInterval(1);
 		else

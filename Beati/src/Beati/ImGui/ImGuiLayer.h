@@ -1,34 +1,30 @@
 #pragma once
 #include "Beati/Core/Layer.h"
 
-#include "Beati/Events/Event.h"
+#include "Beati/Events/ApplicationEvent.h"
 #include "Beati/Events/KeyEvent.h"
 #include "Beati/Events/MouseEvent.h"
-#include "Beati/Events/ApplicationEvent.h"
 
 namespace Beati 
 {
-	class BEATI_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();
-		virtual ~ImGuiLayer() = default;
+		~ImGuiLayer() = default;
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
+		virtual void OnEvent(Event& event) override;
 
 		void Begin();
 		void End();
 
-		static ImGuiLayer* Get() { return s_Instance; }
+		inline void BlockEvents(bool block) { m_BlockEvents = block; }
+
+		void SetDarkThemeColors();
 	private:
-		
-		static ImGuiLayer* s_Instance;
-		float m_time = 0.0f;
-		ImGuiLayer(const ImGuiLayer&) = delete;
-		ImGuiLayer& operator=(const ImGuiLayer&) = delete;
-		ImGuiLayer(ImGuiLayer&&) = delete;
-		ImGuiLayer& operator=(ImGuiLayer&&) = delete;
+		bool m_BlockEvents = true;
 	};
 }
 

@@ -1,27 +1,22 @@
 #pragma once
 
-#include "Core.h"
+#include "Beati/Core/Base.h"
 
-#include "Window.h"
+#include "Beati/Core/Window.h"
 #include "Beati/Core/LayerStack.h"
 #include "Beati/Events/Event.h"
 #include "Beati/Events/ApplicationEvent.h"
 
 #include "Beati/ImGui/ImGuiLayer.h"
 
-#include "Beati/Renderer/Shader.h"
-#include "Beati/Renderer/Buffer.h"
-#include "Beati/Renderer/VertexArray.h"
-#include "Beati/Renderer/OrthographicCamera.h"
-
 #include "Beati/Core/Timestep.h"
 
-
+int main(int argc, char** argv);
 
 
 namespace Beati {
 
-	class BEATI_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -35,6 +30,11 @@ namespace Beati {
 		void PushOverlay(Layer* overlay);
 
 		inline Window& GetWindow() { return *m_Window; }
+
+		void Close();
+
+		inline ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
+
 		inline static Application& Get() { return *s_Instance; }
 
 	private:

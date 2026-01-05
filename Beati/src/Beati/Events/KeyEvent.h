@@ -4,7 +4,7 @@
 
 
 namespace Beati {
-	class BEATI_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public: 
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -18,7 +18,7 @@ namespace Beati {
 		int m_KeyCode;
 	};
 
-	class BEATI_API KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keyCode, int repeatCount)
@@ -39,7 +39,7 @@ namespace Beati {
 		int m_RepeatCount;
 	};
 
-	class BEATI_API KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keyCode)
@@ -55,7 +55,7 @@ namespace Beati {
 		EVENT_CLASS_TYPE(KeyReleased);
 	};
 
-	class BEATI_API KeyTypedEvent : public KeyEvent
+	class KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(int keyCode)

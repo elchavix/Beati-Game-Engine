@@ -202,7 +202,7 @@ namespace Beati {
 	}
 }
 
-#define BE_PROFILE 1
+#define BE_PROFILE 0
 #if BE_PROFILE
 // Resolve which function signature macro will be used. Note that this only
 // is resolved when the (pre)compiler starts, so the syntax highlighting

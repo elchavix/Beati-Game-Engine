@@ -1,7 +1,7 @@
 #pragma once
 
 #include "bepch.h"
-#include "Beati/Core/Core.h"
+#include "Beati/Core/Base.h"
 
 
 namespace Beati {
@@ -31,7 +31,7 @@ namespace Beati {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return static_cast<int>(category); }
 
-	class BEATI_API Event
+	class Event
 	{
 		friend class EventDispatcher;
 	public:

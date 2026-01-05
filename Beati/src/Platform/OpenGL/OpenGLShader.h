@@ -1,12 +1,12 @@
 #pragma once
-#include "Beati/Renderer/Shader.h"
 
+#include "Beati/Renderer/Shader.h"
 #include <glm/glm.hpp>
 
-// Temporary. TODO: Remove this
 typedef unsigned int GLenum;
 
 namespace Beati {
+
 	class OpenGLShader : public Shader
 	{
 	public:
@@ -19,6 +19,7 @@ namespace Beati {
 		virtual void Unbind() const override;
 
 		virtual void SetInt(const std::string& name, int value) override;
+		virtual void SetIntArray(const std::string& name, int* values, uint32_t count) override;
 		virtual void SetFloat(const std::string& name, float value) override;
 		virtual void SetFloat2(const std::string& name, const glm::vec2& value) override;
 		virtual void SetFloat3(const std::string& name, const glm::vec3& value) override;
@@ -28,20 +29,23 @@ namespace Beati {
 
 		virtual const std::string& GetName() const override { return m_Name; };
 
-		void UploadloadUniformInt(const std::string& name, int value);
+		void UploadUniformInt(const std::string& name, int value);
+		void UploadUniformIntArray(const std::string& name, int* values, uint32_t count);
 
-		void UploadloadUniformFloat(const std::string& name, float value);
-		void UploadloadUniformFloat2(const std::string& name, const glm::vec2& vec2f);
-		void UploadloadUniformFloat3(const std::string& name, const glm::vec3& vec3f);
-		void UploadloadUniformFloat4(const std::string& name, const glm::vec4& vec4f);
+		void UploadUniformFloat(const std::string& name, float value);
+		void UploadUniformFloat2(const std::string& name, const glm::vec2& vec2f);
+		void UploadUniformFloat3(const std::string& name, const glm::vec3& vec3f);
+		void UploadUniformFloat4(const std::string& name, const glm::vec4& vec4f);
 
-		void UploadloadUniformMatrix3f(const std::string& name, const glm::mat3& matrix);
-		void UploadloadUniformMatrix4f(const std::string& name, const glm::mat4& matrix);
+		void UploadUniformMatrix3f(const std::string& name, const glm::mat3& matrix);
+		void UploadUniformMatrix4f(const std::string& name, const glm::mat4& matrix);
+	private:
 		std::string ReadFile(const std::string& filepath);
 		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
-	private:
+		
 		void Compile(const std::unordered_map<GLenum, std::string>& shaderSrc);
 
+	public: // Delete public line
 		int GetUniformLocation(const std::string& name);
 
 	private:

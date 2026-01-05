@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>bepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING;BE_PLATFORM_WINDOWS;BE_BUILD_DLL;GLFW_INCLUDE_NONE;BE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -99,7 +99,7 @@
       <PrecompiledHeaderFile>bepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING;BE_PLATFORM_WINDOWS;BE_BUILD_DLL;GLFW_INCLUDE_NONE;BE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -125,7 +125,7 @@
       <PrecompiledHeaderFile>bepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING;BE_PLATFORM_WINDOWS;BE_BUILD_DLL;GLFW_INCLUDE_NONE;BE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -146,20 +146,21 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Beati\Debug\Instrumentation.h" />
-    <ClInclude Include="src\Beati\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Beati.h" />
     <ClInclude Include="src\Beati\Core\Application.h" />
-    <ClInclude Include="src\Beati\Core\Core.h" />
+    <ClInclude Include="src\Beati\Core\Assert.h" />
+    <ClInclude Include="src\Beati\Core\Base.h" />
     <ClInclude Include="src\Beati\Core\EntryPoint.h" />
     <ClInclude Include="src\Beati\Core\Input.h" />
     <ClInclude Include="src\Beati\Core\KeyCodes.h" />
     <ClInclude Include="src\Beati\Core\Layer.h" />
     <ClInclude Include="src\Beati\Core\LayerStack.h" />
     <ClInclude Include="src\Beati\Core\Log.h" />
-    <ClInclude Include="src\Beati\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\Beati\Core\MouseCodes.h" />
+    <ClInclude Include="src\Beati\Core\PlatformDetection.h" />
     <ClInclude Include="src\Beati\Core\Timestep.h" />
     <ClInclude Include="src\Beati\Core\Window.h" />
+    <ClInclude Include="src\Beati\Debug\Instrumentor.h" />
     <ClInclude Include="src\Beati\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Beati\Events\Event.h" />
     <ClInclude Include="src\Beati\Events\KeyEvent.h" />
@@ -167,22 +168,26 @@
     <ClInclude Include="src\Beati\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Beati\ImGui\KeyMap.h" />
     <ClInclude Include="src\Beati\Renderer\Buffer.h" />
+    <ClInclude Include="src\Beati\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Beati\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Beati\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Beati\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Beati\Renderer\Renderer.h" />
+    <ClInclude Include="src\Beati\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Beati\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Beati\Renderer\RendererCommand.h" />
     <ClInclude Include="src\Beati\Renderer\Shader.h" />
+    <ClInclude Include="src\Beati\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\Beati\Renderer\Texture.h" />
     <ClInclude Include="src\Beati\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Beati\Scene\Scene.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\bepch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -616,7 +621,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Beati\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Beati\Core\Application.cpp" />
     <ClCompile Include="src\Beati\Core\Layer.cpp" />
     <ClCompile Include="src\Beati\Core\LayerStack.cpp" />
@@ -624,16 +628,21 @@
     <ClCompile Include="src\Beati\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Beati\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Beati\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Beati\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Beati\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Beati\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Beati\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Beati\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Beati\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Beati\Renderer\RendererCommand.cpp" />
     <ClCompile Include="src\Beati\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Beati\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Beati\Renderer\Texture.cpp" />
     <ClCompile Include="src\Beati\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Beati\Scene\Scene.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />

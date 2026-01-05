@@ -5,7 +5,7 @@
 
 namespace Beati {
 
-	class BEATI_API ApplicationEvent : public Event
+	class ApplicationEvent : public Event
 	{
 	public:
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
@@ -18,7 +18,7 @@ namespace Beati {
 		}
 	};
 
-	class BEATI_API AppTickEvent : public ApplicationEvent
+	class AppTickEvent : public ApplicationEvent
 	{
 	public:
 		AppTickEvent() {}
@@ -26,7 +26,7 @@ namespace Beati {
 		EVENT_CLASS_TYPE(AppTick);
 	};
 
-	class BEATI_API AppUpdateEvent : public ApplicationEvent
+	class AppUpdateEvent : public ApplicationEvent
 	{
 	public:
 		AppUpdateEvent() {}
@@ -34,7 +34,7 @@ namespace Beati {
 		EVENT_CLASS_TYPE(AppUpdate);
 	};
 
-	class BEATI_API AppRenderEvent : public ApplicationEvent
+	class AppRenderEvent : public ApplicationEvent
 	{
 	public:
 		AppRenderEvent() {}
@@ -42,7 +42,7 @@ namespace Beati {
 		EVENT_CLASS_TYPE(AppRender);
 	};
 
-	class BEATI_API WindowResizeEvent : public ApplicationEvent
+	class WindowResizeEvent : public ApplicationEvent
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -64,7 +64,7 @@ namespace Beati {
 		unsigned int m_Width, m_Height;
 	};
 
-	class BEATI_API WindowCloseEvent : public ApplicationEvent
+	class WindowCloseEvent : public ApplicationEvent
 	{
 	public:
 		WindowCloseEvent() {}

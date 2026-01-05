@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Beati/Core/Core.h"
+#include "Beati/Core/Base.h"
 #include "Beati/Events/Event.h"
 #include "Beati/Core/Timestep.h"
 
 
 namespace Beati {
 
-	class BEATI_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

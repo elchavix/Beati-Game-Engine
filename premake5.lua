@@ -17,6 +17,7 @@ includeDir["Glad"] = "Beati/vendor/Glad/include"
 includeDir["ImGui"] = "Beati/vendor/imgui"
 includeDir["glm"] = "Beati/vendor/glm"
 includeDir["stb_image"] = "Beati/vendor/stb_image"
+includeDir["entt"] = "Beati/vendor/entt/include"
 
 include "Beati/vendor/GLFW"
 include "Beati/vendor/Glad"
@@ -61,6 +62,7 @@ project "Beati"
 		"%{includeDir.ImGui}",
 		"%{includeDir.glm}",
 		"%{includeDir.stb_image}",
+		"%{includeDir.entt}",
 
 	}  
 
@@ -102,6 +104,7 @@ project "Beati"
 		optimize "on"  
 
 
+-- Sandbox Project
 project "Sandbox"  
 	location "Sandbox"  
 	kind "ConsoleApp"  
@@ -123,7 +126,8 @@ project "Sandbox"
 		"Beati/vendor/spdlog/include",
 		"Beati/src",
 		"Beati/vendor",
-		"%{includeDir.glm}"
+		"%{includeDir.glm}",
+		"%{includeDir.entt}"
 	}  
 
 	buildoptions { "/utf-8" }
@@ -139,7 +143,66 @@ project "Sandbox"
 
 		defines  
 		{  
-			"BE_PLATFORM_WINDOWS"  
+			
+		}  
+
+
+	filter "configurations:Debug"  
+		defines { "BE_DEBUG" }  
+		runtime "Debug"
+		symbols "on"  
+
+	filter "configurations:Release"  
+		defines { "BE_RELEASE" }  
+		runtime "Release"
+		optimize "on"  
+
+	filter "configurations:Dist"  
+		defines { "BE_DIST" }
+		runtime "Release"
+		optimize "on"
+
+
+-- Terraria Clone (Mondongo)
+project "Mondongo"  
+	location "Mondongo"  
+	kind "ConsoleApp"  
+	language "C++"  
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/".. outputdir .. "/%{prj.name}")  
+	objdir ("bin-int/".. outputdir .. "/%{prj.name}")  
+
+	files  
+	{  
+		"%{prj.name}/src/**.h",  
+		"%{prj.name}/src/**.cpp",  
+	}  
+
+	includedirs  
+	{  
+		"Beati/vendor/spdlog/include",
+		"Beati/src",
+		"Beati/vendor",
+		"%{includeDir.glm}",
+		"%{includeDir.entt}"
+	}  
+
+	buildoptions { "/utf-8" }
+
+	links  
+	{  
+		"Beati"  
+	}
+
+	filter "system:windows"  
+		cppdialect "C++17"  
+		systemversion "latest"  
+
+		defines  
+		{  
+			
 		}  
 
 

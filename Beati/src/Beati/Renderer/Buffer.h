@@ -38,7 +38,7 @@ namespace Beati {
 		return 0; // Should never reach here
 	}
 
-	struct Element
+	struct BufferElement
 	{
 		ShaderDataType Type;
 		std::string Name;
@@ -46,10 +46,10 @@ namespace Beati {
 		uint32_t Offset;
 		bool Normalized;
 
-		Element(ShaderDataType type, const std::string& name, uint32_t size, uint32_t offset, bool normalized = false)
+		BufferElement(ShaderDataType type, const std::string& name, uint32_t size, uint32_t offset, bool normalized = false)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(offset), Normalized(normalized) {}
 
-		Element(ShaderDataType type, const std::string& name, bool normalized = false)
+		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized) {}
 
 		uint32_t GetComponentCount() const
@@ -77,12 +77,35 @@ namespace Beati {
 	{
 	public:
 
-		BufferLayout() : m_Stride(0) {}
+		BufferLayout() {}
 
-		BufferLayout(const std::initializer_list<Element>& elements) : m_Elements(elements)
+		BufferLayout(const std::initializer_list<BufferElement>& elements) 
+			: m_Elements(elements)
 		{
-			m_Stride = 0;
+			CalculateOffsetsAndStride();
+		}
+
+		void AddElement(const BufferElement& element)
+		{
+			m_Elements.push_back(element);
+			m_Stride += element.Size;
+		}
+
+		inline uint32_t GetStride() const { return m_Stride; }
+		inline const std::vector<BufferElement>& GetElements() const { return m_Elements; }
+
+		inline std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
+		inline std::vector<BufferElement>::iterator end() { return m_Elements.end(); }
+
+		inline std::vector<BufferElement>::const_iterator begin() const { return m_Elements.begin(); }
+		inline std::vector<BufferElement>::const_iterator end() const { return m_Elements.end(); }
+
+
+	private:
+		void CalculateOffsetsAndStride()
+		{
 			uint32_t offset = 0;
+			m_Stride = 0;
 			for (auto& element : m_Elements)
 			{
 				element.Offset = offset;
@@ -90,54 +113,40 @@ namespace Beati {
 				m_Stride += element.Size;
 			}
 		}
-
-		void AddElement(const Element& element)
-		{
-			m_Elements.push_back(element);
-			m_Stride += element.Size;
-		}
-
-		inline const std::vector<Element>& GetElements() const { return m_Elements; }
-
-		inline std::vector<Element>::iterator begin() { return m_Elements.begin(); }
-		inline std::vector<Element>::iterator end() { return m_Elements.end(); }
-
-		inline std::vector<Element>::const_iterator begin() const { return m_Elements.begin(); }
-		inline std::vector<Element>::const_iterator end() const { return m_Elements.end(); }
-
-		inline uint32_t GetStride() const { return m_Stride; }
-
 	private:
-		std::vector<Element> m_Elements;
-		uint32_t m_Stride;
+		std::vector<BufferElement> m_Elements;
+		uint32_t m_Stride = 0;
 	};
 
 	class VertexBuffer
 	{
 	public:
-		virtual ~VertexBuffer() {}
+		virtual ~VertexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 
+		virtual void SetData(const void* data, uint32_t size) = 0;
+
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-
-		static VertexBuffer* Create(float* vertices, uint32_t size);
+		static Ref<VertexBuffer> Create(uint32_t size);
+		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
+		
 	};
 
 	class IndexBuffer
 	{
 	public:
-		virtual ~IndexBuffer() {}
+		virtual ~IndexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 
 		virtual uint32_t GetCount() const = 0;
 
-		static IndexBuffer* Create(uint32_t* indices, uint32_t count);
+		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
 	};
 }
 
