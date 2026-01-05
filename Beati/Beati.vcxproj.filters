@@ -1482,6 +1482,11 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Beati\Scene\Components.h" />
+    <ClInclude Include="src\Beati\Scene\Entity.h" />
+    <ClInclude Include="src\Beati\Core\UUID.h" />
+    <ClInclude Include="src\Beati\Renderer\Camera.h" />
+    <ClInclude Include="src\Beati\Scene\SceneCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Core\Application.cpp">
@@ -1574,5 +1579,8 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Beati\Scene\Entity.cpp" />
+    <ClCompile Include="src\Beati\Core\UUID.cpp" />
+    <ClCompile Include="src\Beati\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

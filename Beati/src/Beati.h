@@ -12,6 +12,11 @@
 
 #include "Beati/ImGui/ImGuiLayer.h"
 
+// ------------ Scene -----------
+#include "Beati/Scene/Scene.h"
+#include "Beati/Scene/Components.h"
+
+
 #include "Beati/Core/Timestep.h"
 
 #include "Beati/Renderer/OrthographicCameraController.h"

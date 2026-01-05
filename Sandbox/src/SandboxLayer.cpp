@@ -35,7 +35,8 @@ void SandboxLayer::OnDetach()
 void SandboxLayer::OnUpdate(Beati::Timestep delta)
 {
 	// ---- Update ----
-	m_CameraController.OnUpdate(delta);
+	if (m_ViewportFocused)
+		m_CameraController.OnUpdate(delta);
 
 	// ---- Render ----
 	Beati::Renderer2D::ResetStats();

@@ -2,19 +2,31 @@
 #include "bepch.h"
 #include <entt.hpp>
 
-// TODO: Finish Scene class
+#include "Components.h"
+#include "Entity.h"
+#include "Beati/Core/Timestep.h"
 
 namespace Beati
 {
+	class Entity;
+
 	class Scene
 	{
 	public:
 		Scene();
 		~Scene();
-		// virtual void Load() = 0;
-		// virtual void Unload() = 0;
+
+		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
+		
+		void OnUpdate(Timestep delta);
+
+		template<typename T>
+		void OnComponentAdded(Entity entity, T& component) {} // TODO: Specialize for specific components if needed
 	private:
 		entt::registry m_Registry;
+	
+		friend class Entity;
 	};
 }
 
