@@ -38,6 +38,8 @@ namespace Beati
 			return m_Scene->m_Registry.get<T>(m_EntityHandle);
 		}
 
+		UUID GetUUID() { return GetComponent<IDComponent>().ID; }
+
 		template<typename T>
 		bool HasComponent()
 		{

@@ -23,6 +23,8 @@ namespace Beati {
 		Ref<Scene> m_ActiveScene;
 		Entity m_CameraEntity;
 		Entity m_SquareEntity;
+		Entity m_CircleEntity;
+		Entity m_LineEntity;
 
 		float m_FPS = 0.0f;
 

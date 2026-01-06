@@ -102,6 +102,9 @@
     <ClInclude Include="src\Beati\Core\Timestep.h">
       <Filter>src\Beati\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Beati\Core\UUID.h">
+      <Filter>src\Beati\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Beati\Core\Window.h">
       <Filter>src\Beati\Core</Filter>
     </ClInclude>
@@ -127,6 +130,9 @@
       <Filter>src\Beati\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\Beati\Renderer\Buffer.h">
+      <Filter>src\Beati\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Renderer\Camera.h">
       <Filter>src\Beati\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Beati\Renderer\Framebuffer.h">
@@ -162,10 +168,22 @@
     <ClInclude Include="src\Beati\Renderer\Texture.h">
       <Filter>src\Beati\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Beati\Renderer\UniformBuffer.h">
+      <Filter>src\Beati\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Beati\Renderer\VertexArray.h">
       <Filter>src\Beati\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Beati\Scene\Components.h">
+      <Filter>src\Beati\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Scene\Entity.h">
+      <Filter>src\Beati\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Beati\Scene\Scene.h">
+      <Filter>src\Beati\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Beati\Scene\SceneCamera.h">
       <Filter>src\Beati\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
@@ -184,6 +202,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -1482,11 +1503,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Beati\Scene\Components.h" />
-    <ClInclude Include="src\Beati\Scene\Entity.h" />
-    <ClInclude Include="src\Beati\Core\UUID.h" />
-    <ClInclude Include="src\Beati\Renderer\Camera.h" />
-    <ClInclude Include="src\Beati\Scene\SceneCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Beati\Core\Application.cpp">
@@ -1499,6 +1515,9 @@
       <Filter>src\Beati\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Beati\Core\Log.cpp">
+      <Filter>src\Beati\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Beati\Core\UUID.cpp">
       <Filter>src\Beati\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Beati\ImGui\ImGuiBuild.cpp">
@@ -1540,10 +1559,19 @@
     <ClCompile Include="src\Beati\Renderer\Texture.cpp">
       <Filter>src\Beati\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Beati\Renderer\UniformBuffer.cpp">
+      <Filter>src\Beati\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Beati\Renderer\VertexArray.cpp">
       <Filter>src\Beati\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Beati\Scene\Entity.cpp">
+      <Filter>src\Beati\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Beati\Scene\Scene.cpp">
+      <Filter>src\Beati\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Beati\Scene\SceneCamera.cpp">
       <Filter>src\Beati\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1564,6 +1592,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1579,8 +1610,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Beati\Scene\Entity.cpp" />
-    <ClCompile Include="src\Beati\Core\UUID.cpp" />
-    <ClCompile Include="src\Beati\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

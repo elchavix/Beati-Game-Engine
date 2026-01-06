@@ -159,6 +159,7 @@
     <ClInclude Include="src\Beati\Core\MouseCodes.h" />
     <ClInclude Include="src\Beati\Core\PlatformDetection.h" />
     <ClInclude Include="src\Beati\Core\Timestep.h" />
+    <ClInclude Include="src\Beati\Core\UUID.h" />
     <ClInclude Include="src\Beati\Core\Window.h" />
     <ClInclude Include="src\Beati\Debug\Instrumentor.h" />
     <ClInclude Include="src\Beati\Events\ApplicationEvent.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\Beati\Renderer\Shader.h" />
     <ClInclude Include="src\Beati\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\Beati\Renderer\Texture.h" />
+    <ClInclude Include="src\Beati\Renderer\UniformBuffer.h" />
     <ClInclude Include="src\Beati\Renderer\VertexArray.h" />
     <ClInclude Include="src\Beati\Scene\Components.h" />
     <ClInclude Include="src\Beati\Scene\Entity.h" />
@@ -191,10 +193,10 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\bepch.h" />
-    <ClInclude Include="src\Beati\Core\UUID.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -630,6 +632,7 @@
     <ClCompile Include="src\Beati\Core\Layer.cpp" />
     <ClCompile Include="src\Beati\Core\LayerStack.cpp" />
     <ClCompile Include="src\Beati\Core\Log.cpp" />
+    <ClCompile Include="src\Beati\Core\UUID.cpp" />
     <ClCompile Include="src\Beati\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Beati\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Beati\Renderer\Buffer.cpp" />
@@ -643,6 +646,7 @@
     <ClCompile Include="src\Beati\Renderer\Shader.cpp" />
     <ClCompile Include="src\Beati\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Beati\Renderer\Texture.cpp" />
+    <ClCompile Include="src\Beati\Renderer\UniformBuffer.cpp" />
     <ClCompile Include="src\Beati\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Beati\Scene\Entity.cpp" />
     <ClCompile Include="src\Beati\Scene\Scene.cpp" />
@@ -653,13 +657,13 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\bepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Beati\Core\UUID.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>

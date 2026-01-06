@@ -137,16 +137,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\MondongoLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MondongoApp.cpp" />
+    <ClCompile Include="src\MondongoLayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Beati\Beati.vcxproj">
       <Project>{AA5FE20C-1674-0ABE-DFF5-AD1D4BC906EF}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\MondongoLayer.cpp" />
-    <ClCompile Include="src\MondongoApp.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\MondongoLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

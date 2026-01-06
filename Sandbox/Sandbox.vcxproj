@@ -137,16 +137,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\SandboxLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\SandboxLayer.cpp" />
+    <ClCompile Include="src\SondBoxApp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Beati\Beati.vcxproj">
       <Project>{AA5FE20C-1674-0ABE-DFF5-AD1D4BC906EF}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\SondBoxApp.cpp" />
-    <ClCompile Include="src\SandboxLayer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\SandboxLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

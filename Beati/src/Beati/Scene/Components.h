@@ -2,6 +2,7 @@
 #include <string>
 #include "glm/glm.hpp"
 #include "Beati/Core/UUID.h"
+#include "Beati/Renderer/Texture.h"
 #include "SceneCamera.h"
 
 namespace Beati
@@ -25,34 +26,65 @@ namespace Beati
 
 	struct TransformComponent
 	{
-		glm::mat4 Transform = glm::mat4(1.0f);
+		glm::vec3 Translation = { 0.0f, 0.0f, 0.0f };
+		glm::vec3 Rotation = { 0.0f, 0.0f, 0.0f };
+		glm::vec3 Scale = { 1.0f, 1.0f, 1.0f };
+
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
-		TransformComponent(const glm::mat4& transform)
-			: Transform(transform) {}
+		TransformComponent(const glm::vec3& translation)
+			: Translation(translation) {
+		}
 
 		glm::mat4 GetTransform() const
 		{
-			return Transform;
-		}
+			glm::mat4 rotation = glm::mat4(glm::quat(Rotation));
 
-		operator glm::mat4& () { return Transform; }
-		operator const glm::mat4& () const { return Transform; }
+			return glm::translate(glm::mat4(1.0f), Translation)
+				* rotation
+				* glm::scale(glm::mat4(1.0f), Scale);
+		}
 	};
 		
 	struct SpriteRendererComponent
 	{
-		glm::vec4 Color = glm::vec4(1.0f);
+		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
+		Ref<Texture2D> Texture;
+		float TilingFactor = 1.0f;
+
 		SpriteRendererComponent() = default;
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		SpriteRendererComponent(const glm::vec4& color)
-			: Color(color) {}
+			: Color(color) {
+		}
+	};
+
+	struct CircleRendererComponent
+	{
+		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
+		float Thickness = 1.0f;
+		float Fade = 0.005f;
+
+		CircleRendererComponent() = default;
+		CircleRendererComponent(const CircleRendererComponent&) = default;
+	};
+
+	struct LineRendererComponent
+	{
+		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
+		glm::vec3 p0{ 0.0f, 0.0f, 0.0f };
+		glm::vec3 p1{ 1.0f, 1.0f, 0.0f };
+		LineRendererComponent() = default;
+		LineRendererComponent(const LineRendererComponent&) = default;
+		LineRendererComponent(const glm::vec4& color)
+			: Color(color) {
+		}
 	};
 
 	struct CameraComponent
 	{
 		SceneCamera Camera;
-		bool Primary = true;
+		bool Primary = true; // TODO: think about moving to Scene
 		bool FixedAspectRatio = false;
 
 		CameraComponent() = default;

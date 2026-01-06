@@ -4,7 +4,7 @@
 
 #include "Beati/Renderer/Texture.h"
 #include "Beati/Renderer/Camera.h"
-#include "Beati/Renderer/SubTexture2D.h" // For future text rendering
+#include "Beati/Scene/Components.h"
 
 namespace Beati {
 	class Renderer2D
@@ -21,11 +21,11 @@ namespace Beati {
 		// Primitives Quads
 		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
-		static void DrawQuad(const glm::mat4& tranform, const glm::vec4& color);
 		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f)); // Add Setings parameter later (for now default)
 		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f)); // Add Setings parameter later (for now default)
-		static void DrawQuad(const glm::mat4& tranform, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 
+		static void DrawQuad(const glm::mat4& transform, const glm::vec4& color, int entityID = -1);
+		static void DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f), int entityID = -1);
 
 		// Primitives Quads rotation in radians
 		static void DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const glm::vec4& color);
@@ -33,7 +33,27 @@ namespace Beati {
 		static void DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 
-		// Text
+		static void DrawCircle(const glm::mat4& transform, const glm::vec4& color, float thickness = 1.0f, float fade = 0.005f, int entityID = -1);
+
+		static void DrawLine(const glm::vec3& p0, glm::vec3& p1, const glm::vec4& color, int entityID = -1);
+
+		static void DrawRect(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color, int entityID = -1);
+		static void DrawRect(const glm::mat4& transform, const glm::vec4& color, int entityID = -1);
+
+		static void DrawSprite(const glm::mat4& transform, SpriteRendererComponent& src, int entityID);
+
+		/*
+		struct TextParams
+		{
+			glm::vec4 Color{ 1.0f };
+			float Kerning = 0.0f;
+			float LineSpacing = 0.0f;
+		};
+		static void DrawString(const std::string& string, Ref<Font> font, const glm::mat4& transform, const TextParams& textParams, int entityID = -1);
+		static void DrawString(const std::string& string, const glm::mat4& transform, const TextComponent& component, int entityID = -1);
+		*/
+		static float GetLineWidth();
+		static void SetLineWidth(float width);
 
 		// Stats
 		struct Statistics
@@ -48,6 +68,7 @@ namespace Beati {
 	
 	private:
 		static void StartNewBatch();
+		static void StartBatch();
 	};
 }
 

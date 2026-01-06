@@ -2,7 +2,6 @@
 
 #include <imgui/imgui.h>
 
-#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 namespace Beati {
@@ -20,6 +19,18 @@ namespace Beati {
 
 		m_SquareEntity = m_ActiveScene->CreateEntity("square");
 		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.3f, 0.8f, 1.0f });
+		m_SquareEntity.GetComponent<TransformComponent>().Scale = { 1.5f, 1.5f, 1.0f };
+		m_SquareEntity.GetComponent<TransformComponent>().Translation = { -5.0f, 1.0f, 0.0f };
+
+		m_CircleEntity = m_ActiveScene->CreateEntity("circle");
+		m_CircleEntity.AddComponent<CircleRendererComponent>(glm::vec4{ 1.0f, 0.3f, 0.8f, 1.0f });
+		m_CircleEntity.GetComponent<TransformComponent>().Scale = { 1.5f, 6.5f, 1.0f };
+		m_CircleEntity.GetComponent<TransformComponent>().Translation = { 5.0f, -1.0f, 0.0f };
+
+		m_LineEntity = m_ActiveScene->CreateEntity("line");
+		m_LineEntity.AddComponent<LineRendererComponent>(glm::vec4{ 1.0f, 0.3f, 0.8f, 1.0f });
+		m_LineEntity.GetComponent<LineRendererComponent>().p0 = glm::vec3{ 0.0f, 0.0f, 0.0f };
+		m_LineEntity.GetComponent<LineRendererComponent>().p1 = glm::vec3{ -12.0f, -6.0f, 0.0f };
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		auto& cameraComponent = m_CameraEntity.AddComponent<CameraComponent>();
@@ -29,11 +40,12 @@ namespace Beati {
 
 	void MondongoLayer::OnDetach()
 	{
-		// TODO: UI Sistem?
 	}
 
 	void MondongoLayer::OnUpdate(Timestep delta)
 	{
+		// ---- Resize ----
+		m_ActiveScene->OnViewportResize((uint32_t)m_CameraController.GetBounds().GetWidth(), (uint32_t)m_CameraController.GetBounds().GetHeight());
 		// ---- Update ----
 		m_CameraController.OnUpdate(delta);
 
@@ -74,6 +86,9 @@ namespace Beati {
 		auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
 
+		ImGui::Spacing();
+		ImGui::Text("Mouse window position");
+		ImGui::Text("X:%d	Y:%d", (int)Input::GetMouseX(), (int)Input::GetMouseY());
 
 		ImGui::Spacing();
 		if (m_MenuVar)
