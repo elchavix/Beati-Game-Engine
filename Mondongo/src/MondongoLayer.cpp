@@ -7,14 +7,12 @@
 namespace Beati {
 
 	MondongoLayer::MondongoLayer()
-		: Layer("MondongoLayer"), m_CameraController(1280.0f / 720.0f, true)
+		: Layer("MondongoLayer")
 	{
 	}
 
 	void MondongoLayer::OnAttach()
 	{
-		m_CameraController.SetZoomLevel(5.0f);
-
 		m_ActiveScene = CreateRef<Scene>();
 
 		m_SquareEntity = m_ActiveScene->CreateEntity("square");
@@ -35,7 +33,7 @@ namespace Beati {
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		auto& cameraComponent = m_CameraEntity.AddComponent<CameraComponent>();
 		cameraComponent.Camera.SetOrthographic(32.0f, -1.0f, 1.0f); // 32 = 16 - (-16)
-		cameraComponent.Camera.SetViewportSize(1280, 720); // Ajusta al tamaño de tu ventana
+		cameraComponent.Camera.SetViewportSize(1280, 720); // Ajusta al tamaño de la ventana
 	}
 
 	void MondongoLayer::OnDetach()
@@ -44,11 +42,7 @@ namespace Beati {
 
 	void MondongoLayer::OnUpdate(Timestep delta)
 	{
-		// ---- Resize ----
-		m_ActiveScene->OnViewportResize((uint32_t)m_CameraController.GetBounds().GetWidth(), (uint32_t)m_CameraController.GetBounds().GetHeight());
 		// ---- Update ----
-		m_CameraController.OnUpdate(delta);
-
 		if (Input::IsKeyPressed(Key::Escape))
 		{
 			if (!m_KeyESC)
@@ -104,7 +98,11 @@ namespace Beati {
 
 	void MondongoLayer::OnEvent(Event& e)
 	{
-		m_CameraController.OnEvent(e);
+		if (e.GetEventType() == EventType::WindowResize)
+		{
+			WindowResizeEvent& event = (WindowResizeEvent&)e;
+			m_ActiveScene->OnViewportResize(event.GetWidth(), event.GetHeight());
+		}
 	}
 
 }

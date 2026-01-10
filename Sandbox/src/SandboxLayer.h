@@ -16,9 +16,6 @@ public:
 	void OnEvent(Beati::Event& e) override;
 
 private:
-	Beati::ShaderLibrary m_ShaderLibrary;
-	Beati::Ref<Beati::Shader> m_FlatColorShader;
-	Beati::Ref<Beati::VertexArray> m_SquareVA;
 	Beati::Ref<Beati::Texture2D> m_Texture;
 	Beati::Ref<Beati::Framebuffer> m_Framebuffer;
 	glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
@@ -33,4 +30,7 @@ private:
 	float m_TextureRotation = 0.0f;
 	float m_TextureTiling = 1.0f;
 	bool m_RenderQuad = true;
+
+	float m_CircleRadius = 0.2f;
+	float m_CircleFade = 0.005f;
 };

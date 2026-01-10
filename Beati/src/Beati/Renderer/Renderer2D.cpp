@@ -472,6 +472,14 @@ namespace Beati {
 		s_Data.Stats.QuadCount++;
 	}
 
+	void Renderer2D::DrawCircle(const glm::vec3& position, const glm::vec4& color, float radius, float thickness, float fade, int entityID)
+	{
+		BE_PROFILE_FUNCTION();
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position)
+			* glm::scale(glm::mat4(1.0f), { radius * 2.0f, radius * 2.0f, 1.0f });
+		DrawCircle(transform, color, thickness, fade, entityID);
+	}
+
 	void Renderer2D::DrawCircle(const glm::mat4& transform, const glm::vec4& color, float thickness, float fade, int entityID)
 	{
 		BE_PROFILE_FUNCTION();

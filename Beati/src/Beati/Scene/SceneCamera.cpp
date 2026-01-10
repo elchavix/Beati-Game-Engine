@@ -3,6 +3,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+
 namespace Beati {
 
 	SceneCamera::SceneCamera()
@@ -35,6 +36,36 @@ namespace Beati {
 		RecalculateProjection();
 	}
 
+	void SceneCamera::SetZoomLevel(float level)
+	{
+		if (m_ProjectionType == ProjectionType::Orthographic)
+		{
+			m_OrthographicSize = level;
+			RecalculateProjection();
+		}
+		else
+		{
+			BE_CORE_WARN("Zoom level can only be set for orthographic projection."); // TODO: Implementar
+		}
+	}
+
+
+	void SceneCamera::OnEvent(Event& e)
+	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<MouseScrolledEvent>(BE_BIND_EVENT_FN(SceneCamera::OnMouseScrolled));
+	}
+	
+	bool SceneCamera::OnMouseScrolled(MouseScrolledEvent& e)
+	{
+		if (m_ProjectionType != ProjectionType::Orthographic)
+			return false;
+		if (e.GetEventType() == EventType::MouseScrolled)
+			m_OrthographicSize -= e.GetYOffset() * 0.25f;
+			RecalculateProjection();
+		return false;
+	}
+
 	void SceneCamera::RecalculateProjection()
 	{
 		if (m_ProjectionType == ProjectionType::Perspective)
@@ -53,5 +84,7 @@ namespace Beati {
 		}
 
 	}
+
+
 
 }

@@ -180,6 +180,9 @@
     <ClInclude Include="src\Beati\Scene\Entity.h">
       <Filter>src\Beati\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\Beati\Scene\Physics2D.h">
+      <Filter>src\Beati\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Beati\Scene\Scene.h">
       <Filter>src\Beati\Scene</Filter>
     </ClInclude>

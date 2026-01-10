@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Beati/Renderer/Camera.h"
+#include <Beati/Events/Event.h>
+#include "Beati/Events/MouseEvent.h"
 
 namespace Beati {
 
@@ -16,6 +18,11 @@ namespace Beati {
 		void SetOrthographic(float size, float nearClip, float farClip);
 
 		void SetViewportSize(uint32_t width, uint32_t height);
+		void SetZoomLevel(float level);
+		bool OnMouseScrolled(MouseScrolledEvent& e);
+
+		float GetWidth() {return m_OrthographicSize * m_AspectRatio;}	// TODO: Eliminar
+		float GetHeight() { return m_OrthographicSize; }				// TODO: Eliminar
 
 		float GetPerspectiveVerticalFOV() const { return m_PerspectiveFOV; }
 		void SetPerspectiveVerticalFOV(float verticalFov) { m_PerspectiveFOV = verticalFov; RecalculateProjection(); }
@@ -33,10 +40,14 @@ namespace Beati {
 
 		ProjectionType GetProjectionType() const { return m_ProjectionType; }
 		void SetProjectionType(ProjectionType type) { m_ProjectionType = type; RecalculateProjection(); }
+
+		void OnEvent(Event& e);
 	private:
 		void RecalculateProjection();
 	private:
 		ProjectionType m_ProjectionType = ProjectionType::Orthographic;
+
+		// float m_Rotation = 0.0f; // TODO: Implementar rotación de cámara si es necesario
 
 		float m_PerspectiveFOV = glm::radians(45.0f);
 		float m_PerspectiveNear = 0.01f, m_PerspectiveFar = 1000.0f;

@@ -44,6 +44,11 @@ namespace Beati
 				* rotation
 				* glm::scale(glm::mat4(1.0f), Scale);
 		}
+
+		glm::vec3 GetTranslation() const
+		{
+			return Translation;
+		}
 	};
 		
 	struct SpriteRendererComponent
@@ -84,10 +89,80 @@ namespace Beati
 	struct CameraComponent
 	{
 		SceneCamera Camera;
-		bool Primary = true; // TODO: think about moving to Scene
+		bool Primary = true;
 		bool FixedAspectRatio = false;
+		bool IsFocused = true;
 
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
 	};
+
+	struct InputMovementComponent
+	{
+		float Speed = 5.0f;  // unidades/segundo
+
+		InputMovementComponent() = default;
+		InputMovementComponent(const InputMovementComponent&) = default;
+		InputMovementComponent(float speed) : Speed(speed) {}
+	};
+
+	struct PhysicComponent
+	{
+		glm::vec2 Speed = glm::vec2(0.0f);
+		float Mass = 0.0f;
+		float AirFriction = 0.0f;
+		float GravityScale = 1.0f;
+		bool IsStatic = false;
+		PhysicComponent() = default;
+		PhysicComponent(const PhysicComponent&) = default;
+	};
+
+	// Physics
+	struct Rigidbody2DComponent
+	{
+		enum class BodyType { Static = 0, Dynamic, Kinematic };
+		BodyType Type = BodyType::Static;
+		bool FixedRotation = false;
+
+		// Storage for runtime
+		void* RuntimeBody = nullptr;
+
+		Rigidbody2DComponent() = default;
+		Rigidbody2DComponent(const Rigidbody2DComponent&) = default;
+	};
+
+	struct BoxCollider2DComponent
+	{
+		glm::vec2 Offset = { 0.0f, 0.0f };
+		glm::vec2 Size = { 0.5f, 0.5f };
+
+		float Density = 1.0f;
+		float Friction = 0.5f;
+		float Restitution = 0.0f;
+		float RestitutionThreshold = 0.5f;
+
+		// Storage for runtime
+		void* RuntimeFixture = nullptr;
+
+		BoxCollider2DComponent() = default;
+		BoxCollider2DComponent(const BoxCollider2DComponent&) = default;
+	};
+
+	struct CircleCollider2DComponent
+	{
+		glm::vec2 Offset = { 0.0f, 0.0f };
+		float Radius = 0.5f;
+
+		float Density = 1.0f;
+		float Friction = 0.5f;
+		float Restitution = 0.0f;
+		float RestitutionThreshold = 0.5f;
+
+		// Storage for runtime
+		void* RuntimeFixture = nullptr;
+
+		CircleCollider2DComponent() = default;
+		CircleCollider2DComponent(const CircleCollider2DComponent&) = default;
+	};
+
 }

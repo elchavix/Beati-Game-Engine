@@ -18,8 +18,6 @@ namespace Beati {
 		void OnEvent(Event& e) override;
 
 	private:
-		OrthographicCameraController m_CameraController;
-
 		Ref<Scene> m_ActiveScene;
 		Entity m_CameraEntity;
 		Entity m_SquareEntity;

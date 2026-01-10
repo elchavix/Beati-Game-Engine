@@ -13,8 +13,6 @@ SandboxLayer::SandboxLayer()
 
 void SandboxLayer::OnAttach()
 {
-	BE_PROFILE_FUNCTION();
-
 	m_Texture = (Beati::Texture2D::Create("assets/textures/cubo.png"));
 
 	m_CameraController.SetZoomLevel(5.0f);
@@ -28,7 +26,6 @@ void SandboxLayer::OnAttach()
 
 void SandboxLayer::OnDetach()
 {
-	// BE_PROFILE_FUNCTION();
 	
 }
 
@@ -40,42 +37,35 @@ void SandboxLayer::OnUpdate(Beati::Timestep delta)
 
 	// ---- Render ----
 	Beati::Renderer2D::ResetStats();
-	{
-		BE_PROFILE_SCOPE("Render Prep");
-		m_Framebuffer->Bind();
-		Beati::RenderCommand::SetClearColor({ 0.2f, 0.3f, 0.4f, 1.0f });
-		Beati::RenderCommand::Clear();
-	}
+	m_Framebuffer->Bind();
+	Beati::RenderCommand::SetClearColor({ 0.2f, 0.3f, 0.4f, 1.0f });
+	Beati::RenderCommand::Clear();
 
-	{
-		BE_PROFILE_SCOPE("Render Draw");
-		Beati::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	Beati::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-		if (m_RenderQuad)
-			Beati::Renderer2D::DrawRotatedQuad({ 0.5f, 0.2f, -0.1f}, {5.0f, 5.0f}, m_TextureRotation, m_Texture, m_TextureTiling, m_TextureColor);
-		for (int y = -5; y < 5; y++)
+	if (m_RenderQuad)
+		Beati::Renderer2D::DrawRotatedQuad({ 0.5f, 0.2f, -0.1f}, {5.0f, 5.0f}, m_TextureRotation, m_Texture, m_TextureTiling, m_TextureColor);
+	for (int y = -5; y < 5; y++)
+	{
+		for (int x = -5; x < 5; x++)
 		{
-			for (int x = -5; x < 5; x++)
-			{
-				glm::vec4 color = { (float)(x + 5) / 10.0f, 0.4f, (float)(y + 5) / 10.0f, 0.8f };
-				if ((x + y) % 2 == 0)
-					Beati::Renderer2D::DrawQuad({ (float)x, (float)y, 0.0f }, { 0.45f, 0.45f }, color);
-				else
-					Beati::Renderer2D::DrawQuad({ (float)x, (float)y, 0.0f }, { 0.45f, 0.45f }, m_Texture, 1.0f, color);
-			}
+			glm::vec4 color = { (float)(x + 5) / 10.0f, 0.4f, (float)(y + 5) / 10.0f, 0.8f };
+			if ((x + y) % 2 == 0)
+				Beati::Renderer2D::DrawCircle({ (float)x, (float)y, 0.0f }, { color }, m_CircleRadius, 1.0f, m_CircleFade);
+			else
+				Beati::Renderer2D::DrawQuad({ (float)x, (float)y, 0.0f }, { 0.45f, 0.45f }, m_Texture, 1.0f, color);
 		}
-
-		Beati::Renderer2D::DrawQuad({ 1.0f, -0.5f, 0.1f}, { 0.5f, 0.75f }, { m_SquareColor });
-		
-		Beati::Renderer2D::EndScene();
-		m_Framebuffer->Unbind();
 	}
+
+	Beati::Renderer2D::DrawQuad({ 1.0f, -0.5f, 0.1f}, { 0.5f, 0.75f }, { m_SquareColor });
+	Beati::Renderer2D::DrawLine({ -2.0f, -2.0f, 0.0f }, glm::vec3{ 2.0f, 2.0f, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f });
+		
+	Beati::Renderer2D::EndScene();
+	m_Framebuffer->Unbind();
 }
 
 void SandboxLayer::OnImGuiRender()
 {
-	BE_PROFILE_FUNCTION();
-
 	static bool dockspaceOpen = true;
 	static bool opt_fullscreen_persistant = true;
 	bool opt_fullscreen = opt_fullscreen_persistant;
@@ -144,6 +134,10 @@ void SandboxLayer::OnImGuiRender()
 	ImGui::Spacing();
 	ImGui::Text("Viewport Focus: %d", m_ViewportFocused);
 	ImGui::Text("Viewport Hovered: %d", m_ViewportHovered);
+	ImGui::Spacing();
+	ImGui::SliderFloat("Circle Radius", &m_CircleRadius, 0.001f, 2.0f); 
+	ImGui::SliderFloat("Circle Fade", &m_CircleFade, 0.0005f, 1.0f);	
+
 	ImGui::End();
 	
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
@@ -152,7 +146,7 @@ void SandboxLayer::OnImGuiRender()
 	m_ViewportFocused = ImGui::IsWindowFocused();
 	m_ViewportHovered = ImGui::IsWindowHovered();
 
-	Beati::Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+	Beati::Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportHovered);
 
 	ImVec2 viewportSize = ImGui::GetContentRegionAvail();
 

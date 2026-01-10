@@ -52,7 +52,7 @@ namespace Beati {
 		glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f }; // Camera position in world space
 		float m_CameraRotation = 0.0f; // Current camera rotation
 
-		float m_CameraTranslationSpeed = 1.0f; // Speed of camera translation
+		float m_CameraTranslationSpeed = 1.4f; // Speed of camera translation
 		float m_CameraRotationSpeed = 20.0f; // Speed of camera rotation
 
 		OrthographicCameraBounds m_Bounds;
