@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 #include "Beati/Renderer/Camera.h"
 #include <Beati/Events/Event.h>
@@ -47,7 +47,7 @@ namespace Beati {
 	private:
 		ProjectionType m_ProjectionType = ProjectionType::Orthographic;
 
-		// float m_Rotation = 0.0f; // TODO: Implementar rotaciÛn de c·mara si es necesario
+		// float m_Rotation = 0.0f; // TODO: Implementar rotaci√≥n de c√°mara si es necesario
 
 		float m_PerspectiveFOV = glm::radians(45.0f);
 		float m_PerspectiveNear = 0.01f, m_PerspectiveFar = 1000.0f;

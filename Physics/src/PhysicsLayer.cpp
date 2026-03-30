@@ -1,4 +1,4 @@
-#include "PhysicsLayer.h"
+Ôªø#include "PhysicsLayer.h"
 
 #include <imgui/imgui.h>
 
@@ -23,20 +23,29 @@ void PhysicsLayer::OnAttach()
 
 	m_BaseballTexture = Beati::Texture2D::Create("assets/textures/baseball_ball.png");
 
+	m_RopeAnchor = m_ActiveScene->CreateEntity("RopeAnchor");
+	m_RopeAnchor.GetComponent<Beati::TransformComponent>().Translation = glm::vec3(0.0f, 5.0f, 0.0f);  // Posici√≥n inicial
 
-	m_Quad = m_ActiveScene->CreateEntity("Quad Entity");
-	m_Quad.AddComponent<Beati::Rigidbody2DComponent>().Type = Beati::Rigidbody2DComponent::BodyType::Static;
-	m_Quad.AddComponent<Beati::BoxCollider2DComponent>();
-	m_Quad.AddComponent<Beati::SpriteRendererComponent>().Color = { 1.0f, 0.0f, 0.0f, 1.0f };
-	m_Quad.GetComponent<Beati::TransformComponent>().Translation = { 0.0f, 0.0f, 0.0f };
-	m_Quad.GetComponent<Beati::TransformComponent>().Scale = glm::vec3(1.0f);
+	auto& rope = m_RopeAnchor.AddComponent<Beati::RopeComponent>();
+	rope.IsAnchored = true;
+	rope.Density = 1.0f;
+	rope.NumSegments = 20;
+	rope.EndOffset = { 0.0f, -10.0f, 0.0f };
+	rope.SegmentWidth = 0.1f;
+
+	m_QuadEntity = m_ActiveScene->CreateEntity("Quad Entity");
+	m_QuadEntity.AddComponent<Beati::Rigidbody2DComponent>().Type = Beati::Rigidbody2DComponent::BodyType::Static;
+	m_QuadEntity.AddComponent<Beati::BoxCollider2DComponent>().Friction = 5.0f;
+	m_QuadEntity.AddComponent<Beati::SpriteRendererComponent>().Color = { 1.0f, 0.0f, 0.0f, 1.0f };
+	m_QuadEntity.GetComponent<Beati::TransformComponent>().Translation = { 2.0f, -5.0f, 0.0f };
+	m_QuadEntity.GetComponent<Beati::TransformComponent>().Scale = glm::vec3(10.0f, 1.0f, 0.0f);
 
 	m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 	auto& cameraComponent = m_CameraEntity.AddComponent<Beati::CameraComponent>();
 	m_CameraEntity.AddComponent<Beati::InputMovementComponent>();
 
 	cameraComponent.Camera.SetOrthographic(32.0f, -1.0f, 1.0f); // 32 = 16 - (-16)
-	cameraComponent.Camera.SetViewportSize(1280, 720); // Ajusta al tamaÒo de la ventana
+	cameraComponent.Camera.SetViewportSize(1280, 720); // Ajusta al tama√±o de la ventana
 	cameraComponent.Camera.SetZoomLevel(5.0f);
 
 	Beati::FramebufferSpecification fbSpec;
@@ -58,11 +67,19 @@ void PhysicsLayer::OnUpdate(Beati::Timestep delta)
 	// ---- Update ----
 	m_MousePos = CalculateMousePosInViewport(); // TODO: Optimizar para no llamarlo siempre
 
-	m_CameraEntity.GetComponent<Beati::CameraComponent>().IsFocused = m_ViewportFocused; // Permitir mover la c·mara solo si el viewport est· enfocado
+	m_CameraEntity.GetComponent<Beati::CameraComponent>().IsFocused = m_ViewportFocused; // Permitir mover la c√°mara solo si el viewport est√° enfocado
 
+	// Elimina circulos
 	for (int i = 0; i < m_Circulos.size(); i++)
 	{
 		auto& circulo = m_Circulos[i];
+
+		auto& rb2d = circulo.GetComponent<Beati::Rigidbody2DComponent>();
+		b2Body* body = (b2Body*)rb2d.RuntimeBody;
+		if (body)
+		{
+			circulo.GetComponent<Beati::ParticleEmitterComponent>().EmissionRate = 8.0f * (glm::abs(body->GetLinearVelocity().x) + glm::abs(body->GetLinearVelocity().y));
+		}
 
 		if (circulo.GetComponent<Beati::TransformComponent>().Translation.y < -10.0f)
 		{
@@ -136,6 +153,7 @@ void PhysicsLayer::OnImGuiRender()
 	}
 
 	ImGui::Begin("Settings");
+	ImGui::SliderFloat("Circle Size", &m_CircleScale, 0.1f, 10.0f);
 	ImGui::End();
 
 	ImGui::Begin("Draw Stats");
@@ -166,7 +184,7 @@ void PhysicsLayer::OnImGuiRender()
 	{
 		m_ViewportSize = { viewportSize.x, viewportSize.y };
 		m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-		m_ActiveScene->OnViewportResize(m_ViewportSize.x, m_ViewportSize.y);
+		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 	}
 
 	if (m_ViewportSize.x == 0 || m_ViewportSize.y == 0)
@@ -186,16 +204,25 @@ void PhysicsLayer::OnEvent(Beati::Event& e)
 {
 	m_ActiveScene->OnEvent(e);
 
-	if (e.GetEventType() == Beati::EventType::MouseMoved && m_ViewportHovered)
+	if (e.GetEventType() == Beati::EventType::MouseButtonPressed && m_ViewportHovered)
 	{
 		Beati::Entity circulo = m_ActiveScene->CreateEntity("circulo G");
 		circulo.AddComponent<Beati::SpriteRendererComponent>().Texture = m_BaseballTexture;
-		circulo.GetComponent<Beati::TransformComponent>().Scale = glm::vec3(0.3f);
+		circulo.GetComponent<Beati::TransformComponent>().Scale = glm::vec3(m_CircleScale);
 		circulo.GetComponent<Beati::TransformComponent>().Translation = glm::vec3(m_MousePos.WorldPos.x, m_MousePos.WorldPos.y, 0.0f);
-		circulo.AddComponent<Beati::Rigidbody2DComponent>().Type = Beati::Rigidbody2DComponent::BodyType::Dynamic;
-		circulo.AddComponent<Beati::CircleCollider2DComponent>();
+		circulo.AddComponent<Beati::Rigidbody2DComponent>(Beati::Rigidbody2DComponent::BodyType::Dynamic);
+		circulo.AddComponent<Beati::CircleCollider2DComponent>().Density = 5.5f;
+		
+		auto& pec = circulo.AddComponent<Beati::ParticleEmitterComponent>();
+		pec.EmissionRate = 50.0f;					// 50 part√≠culas/seg
+		pec.MaxParticles = 1000;
+		pec.ParticleLifetime = 3.0f;
+		pec.InitialVelocityMin = { -2.0f, 1.0f, 0.0f };
+		pec.InitialVelocityMax = { 2.0f, 3.0f, 0.0f };
+		pec.Color = { 1.0f, 0.5f, 0.0f, 1.0f };		// Naranja
+		pec.GravityScale = 0.5f;					// Gravedad ligera
+		pec.IsEmitting = true;
 
-		m_ActiveScene->OnPhysics2DBodyCreated(circulo);
 
 		auto& rb2d = circulo.GetComponent<Beati::Rigidbody2DComponent>();
 		b2Body* body = (b2Body*)rb2d.RuntimeBody;
@@ -227,7 +254,7 @@ MousePos PhysicsLayer::CalculateMousePosInViewport()
 
 	glm::vec3 worldPos = { input.NormalizedPos.x + cameraPos.x, input.NormalizedPos.y + cameraPos.y, 0.0f };
 
-	// Aplicar rotaciÛn inversa usando matriz GLM
+	// Aplicar rotaci√≥n inversa usando matriz GLM
 	glm::mat4 rotationMatrix = glm::rotate(glm::mat4(1.0f), cameraRotationRadians, glm::vec3(0.0f, 0.0f, 1.0f));
 	glm::vec3 relativePos = worldPos - cameraPos;
 	glm::vec3 rotatedPos = glm::vec3(rotationMatrix * glm::vec4(relativePos, 1.0f));
