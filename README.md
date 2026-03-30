@@ -84,14 +84,14 @@ Actualmente el proyecto soporta únicamente:
    git clone <repo-url>
    ```
 2. Generar los archivos del proyecto:
-  ```bash
-  scripts/Win-GenProjetcs.bat
-  ```
+   ```bash
+   scripts/Win-GenProjetcs.bat
+   ```
 3. Abrir la solución:
-  ```bash
-  Beati.sln
-  ```
-  Compilar y ejecutar desde Visual Studio
+   ```bash
+   Beati.sln
+   ```
+   Compilar y ejecutar desde Visual Studio
 
 ---
 
