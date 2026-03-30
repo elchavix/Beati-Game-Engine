@@ -109,6 +109,9 @@ Se utiliza como herramienta para:
 - Prototipado de sistemas gráficos
 - Visualización de datos/simulaciones
 - Desarrollo de proyectos personales
+---
+<img width="1278" height="750" alt="image" src="https://github.com/user-attachments/assets/fdaef3b1-83ba-4702-9005-d0ad1e36bc4b" />
+
 ## Notas
 - El motor está en desarrollo activo, por lo que pueden existir cambios frecuentes
 - Algunas funcionalidades pueden estar incompletas o en proceso de refactorización
