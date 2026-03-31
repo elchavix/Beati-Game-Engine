@@ -7,6 +7,9 @@ El proyecto comenzó como una implementación siguiendo la serie de desarrollo d
 Actualmente, Beati se utiliza como base para proyectos personales que requieren visualización gráfica y simulación.
 
 ---
+<img width="1280" height="750" alt="image" src="https://github.com/user-attachments/assets/effb651a-10f9-4d2c-8428-c411878119fd" />
+*Testing de Shaders básicos y cargado de texturas*
+---
 
 ## Estado del proyecto
 
@@ -111,6 +114,7 @@ Se utiliza como herramienta para:
 - Desarrollo de proyectos personales
 ---
 <img width="1278" height="750" alt="image" src="https://github.com/user-attachments/assets/fdaef3b1-83ba-4702-9005-d0ad1e36bc4b" />
+*Testeo de fisicas y su renderizado*
 
 ## Notas
 - El motor está en desarrollo activo, por lo que pueden existir cambios frecuentes
